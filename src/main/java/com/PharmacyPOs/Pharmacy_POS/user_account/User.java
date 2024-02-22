@@ -43,4 +43,12 @@ public class User {
 
     @NotNull(message = "Pharmacy type is required")
     private PharmacyType pharmacyType;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
