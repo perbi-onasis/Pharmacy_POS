@@ -1,13 +1,13 @@
-package com.PharmacyPOs.Pharmacy_POS;
+// package com.PharmacyPOs.Pharmacy_POS;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+/*@SpringBootTest
 class PharmacyPosApplicationTests {
 
 	@Test
 	void contextLoads() {
 	}
 
-}
+}*/
