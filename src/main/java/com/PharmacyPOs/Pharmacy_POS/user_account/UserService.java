@@ -1,8 +1,11 @@
 package com.PharmacyPOs.Pharmacy_POS.user_account;
 
 import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+//import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @Service
@@ -13,6 +16,14 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+/*    public class PwdSecurityConfig {
+        @Bean
+        public PasswordEncoder passwordEncoder(){
+            return new BCryptPasswordEncoder();
+        }
+    }
+*/
+
     /* Checks if a user is not already registered then it creates the user in the db*/
     public User registerUser(User user) {
         User existingUser = userRepository.findByEmail(user.getEmail());
@@ -22,6 +33,10 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+//     public String encodePassword(String rawPassword) {
+//        return passwordEncoder.encode(rawPassword);
+//    }
 
     /* Find Users Method*/
     public User findUserByEmail(String email){
