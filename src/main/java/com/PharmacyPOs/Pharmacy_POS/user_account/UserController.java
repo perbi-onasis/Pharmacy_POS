@@ -2,35 +2,53 @@ package com.PharmacyPOs.Pharmacy_POS.user_account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
+import com.PharmacyPOs.Pharmacy_POS.user_account.PwdConfiguration;
+import com.PharmacyPOs.Pharmacy_POS.user_account.UserService;
 
 @RestController
 @RequestMapping("api/users")
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    private final PwdConfiguration pwdConfiguration;
+
+    public UserController(PwdConfiguration pwdConfiguration, UserService userService) {
+        this.pwdConfiguration = pwdConfiguration;
+        this.userService = userService;
+    }
+
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+//    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@RequestBody User user, @Autowired PasswordEncoder passwordEncoder) {
-        User registeredUser = userService.registerUser(user);
+    public ResponseEntity<User> registerUser(@RequestParam("email") String email , @RequestParam("password") String password, @RequestParam("firstname") String firstname, @RequestParam("surname") String surname,
+                                          @RequestParam("phoneNumber") String phoneNumber, @RequestParam("pharmacyName") String pharmacyName,
+                                          @RequestParam("location") String location, @RequestParam("pharmacyType") String pharmacyType) {
+        User registeredUser = userService.registerUser(email, password, firstname, surname, phoneNumber, location, pharmacyName, pharmacyType);
         return ResponseEntity.ok(registeredUser);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser (@RequestBody User user){
-        User registeredUser = userService.findUserByEmail(user.getEmail());
+    public ResponseEntity<User> loginUser (@RequestParam("password") String password, @RequestParam("email") String email){
+        User registeredUser = userService.findUserByEmail(email);
         if (registeredUser == null){
             return ResponseEntity.notFound().build();
         }
+
+//        boolean checkPassword = pwdConfiguration.PasswordDecoder(password, registeredUser.getPassword());
+
+/*        if(checkPassword){
+
+        } else{
+
+        }*/
+
         /*if(!userService.passwordEncoder.matches(user.getPassword(), registeredUser.getPassword())){
             return ResponseEntity.status(401).build();
         }*/
