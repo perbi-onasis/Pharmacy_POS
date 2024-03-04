@@ -1,6 +1,7 @@
 package com.PharmacyPOs.Pharmacy_POS.user_account;
 import com.PharmacyPOs.Pharmacy_POS.user_account.User;
 
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -17,11 +18,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserService {
     @Autowired
     private final UserRepository userRepository;
-    private final PwdConfiguration pwdConfiguration;
+//    private final PwdConfiguration pwdConfiguration;
 
-    public UserService(UserRepository userRepository, PwdConfiguration pwdConfiguration) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.pwdConfiguration = pwdConfiguration;
+//        this.pwdConfiguration = pwdConfiguration;
     }
 
 
@@ -42,7 +43,7 @@ public class UserService {
         if (existingUser != null) {
 //            throw new UserAlreadyExistException("A user with the email address " + user.getEmail() + " already exists.");
         }
-        String hashPassword = pwdConfiguration.passwordEncoder(password);
+        String hashPassword = passwordEncoder(password);
 
         User user = new User(firstname, surname, phoneNumber, email, pharmacyName, hashPassword, location, pharmacyType);
         return userRepository.save(user);
@@ -55,5 +56,15 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+/**
+ * @param  plainPassword
+ * */
+    public  String passwordEncoder (String plainPassword){
+        return BCrypt.hashpw(plainPassword, BCrypt.gensalt(12));
+    }
+
+    public boolean passwordDecoder(String enteredPassword, String hashedPassword){
+        return BCrypt.checkpw(enteredPassword, hashedPassword);
+    }
 
 }
