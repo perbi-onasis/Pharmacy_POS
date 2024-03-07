@@ -22,6 +22,26 @@ public class Product {
 
     }
 
+
+    public Product(String id, String name, double costPrice, double sellingPrice, int quantityInStock, LocalDate expiryDate, String categoryId, int version) {
+        this.id = id;
+        this.name = name;
+        this.costPrice = costPrice;
+        this.sellingPrice = sellingPrice;
+        this.quantityInStock = quantityInStock;
+        this.expiryDate = expiryDate;
+        this.categoryId = categoryId;
+        this.version = version;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
@@ -78,7 +98,8 @@ public class Product {
         this.version = version;
     }
 
-    //    public LocalDate getExpiryDate() {
+
+//    public LocalDate getExpiryDate() {
 //        return expiryDate;
 //    }
 //

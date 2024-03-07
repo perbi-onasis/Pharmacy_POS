@@ -52,6 +52,11 @@ public class ProductController {
         return ResponseEntity.ok(updatedProduct);
     }
 
-
+    // Get All Products
+    @GetMapping
+    public ResponseEntity<List<Product>> getAllProducts() {
+        List<Product> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
+    }
 
 }

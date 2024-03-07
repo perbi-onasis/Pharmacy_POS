@@ -52,4 +52,9 @@ public class ProductService {
         return productRepository.save(product);
 
     }
+
+    @Autowired
+    public List<Product> getAllProducts() {
+        return (List<Product>) productRepository.findAll();
+    }
 }
