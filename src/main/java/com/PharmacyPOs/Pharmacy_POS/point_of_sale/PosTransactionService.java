@@ -51,7 +51,7 @@ public class PosTransactionService {
     }
 
      ////    return POS Transactions by Id
-    public PosTransaction findPosTransactionById(UUID uuid) {
+    public PosTransaction findPosTransactionById(UUID id) {
        Optional<PosTransaction> optionalPosTransaction = posTransactionRepository.findById(id);
         return optionalPosTransaction.orElse(null);
     }
