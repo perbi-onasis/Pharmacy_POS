@@ -1,0 +1,1075 @@
+<!doctype html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pharma Invent+</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- inject:css-->
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/bootstrap/bootstrap.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/daterangepicker.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/fontawesome.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/footable.standalone.min.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/fullcalendar@5.2.0.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/jquery-jvectormap-2.0.5.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/jquery.mCustomScrollbar.min.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/leaflet.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/line-awesome.min.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/magnific-popup.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/MarkerCluster.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/MarkerCluster.Default.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/select2.min.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/slick.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/star-rating-svg.css">
+
+    <link rel="stylesheet" href="assets/vendor_assets/css/trumbowyg.min.css">
+
+    <link rel="stylesheet" href="/assets/vendor_assets/css/wickedpicker.min.css">
+
+    <link rel="stylesheet" href="/style/style.css">
+
+    <!-- endinject -->
+
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+</head>
+
+<body class="layout-light side-menu">
+<div class="mobile-search">
+    <form action="/" class="search-form">
+        <img src="img/svg/search.svg" alt="search" class="svg">
+        <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
+    </form>
+</div>
+<div class="mobile-author-actions"></div>
+<header class="header-top">
+    <nav class="navbar navbar-light">
+        <div class="navbar-left">
+            <div class="logo-area">
+                <a class="navbar-brand" href="dash.html">
+                    <img class="dark" src="img/logo-dark.png" alt="logo">
+                    <img class="light" src="img/logo-white.png" alt="logo">
+                </a>
+                <a href="#" class="sidebar-toggle">
+                    <img class="svg" src="img/svg/align-center-alt.svg" alt="img"></a>
+            </div>
+            <!--            <div class="top-menu">-->
+
+            <!--            &lt;!&ndash;               &ndash;&gt;-->
+
+            <!--            </div>-->
+        </div>
+        <!-- ends: navbar-left -->
+        <div class="navbar-right">
+            <ul class="navbar-right__menu">
+                <li class="nav-search">
+                    <a href="#" class="search-toggle">
+                        <i class="uil uil-search"></i>
+                        <i class="uil uil-times"></i>
+                    </a>
+                    <form action="/" class="search-form-topMenu">
+                        <span class="search-icon uil uil-search"></span>
+                        <input class="form-control me-sm-2 box-shadow-none" type="search" placeholder="Search..." aria-label="Search">
+                    </form>
+                </li>
+
+                <li class="nav-author">
+                    <div class="dropdown-custom">
+                        <a href="javascript:;" class="nav-item-toggle"><img src="img/author-nav.jpg" alt="" class="rounded-circle">
+                            <span class="nav-item__title">Danial<i class="las la-angle-down nav-item__arrow"></i></span>
+                        </a>
+                        <div class="dropdown-parent-wrapper">
+                            <div class="dropdown-wrapper">
+                                <div class="nav-author__info">
+                                    <div class="author-img">
+                                        <img src="img/author-nav.jpg" alt="" class="rounded-circle">
+                                    </div>
+                                    <div>
+                                        <h6>Rabbi Islam Rony</h6>
+                                        <span>UI Designer</span>
+                                    </div>
+                                </div>
+                                <div class="nav-author__options">
+                                    <ul>
+                                        <li>
+                                            <a href="">
+                                                <i class="uil uil-setting"></i>
+                                                Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="">
+                                                <i class="uil uil-bell"></i> Help</a>
+                                        </li>
+                                    </ul>
+                                    <a href="" class="nav-author__signout">
+                                        <i class="uil uil-sign-out-alt"></i> Sign Out</a>
+                                </div>
+                            </div>
+                            <!-- ends: .dropdown-wrapper -->
+                        </div>
+                    </div>
+                </li>
+                <!-- ends: .nav-author -->
+            </ul>
+            <!-- ends: .navbar-right__menu -->
+            <div class="navbar-right__mobileAction d-md-none">
+                <a href="#" class="btn-search">
+                    <img src="img/svg/search.svg" alt="search" class="svg feather-search">
+                    <img src="img/svg/x.svg" alt="x" class="svg feather-x"></a>
+                <a href="#" class="btn-author-action">
+                    <img class="svg" src="img/svg/more-vertical.svg" alt="more-vertical">
+                </a>
+            </div>
+        </div>
+        <!-- ends: .navbar-right -->
+    </nav>
+</header>
+
+<!--  Beginning of Main Content-->
+<main class="main-content">
+
+    <div class="sidebar-wrapper">
+        <div class="sidebar sidebar-collapse" id="sidebar" >
+            <div class="sidebar__menu-group">
+                <ul class="sidebar_nav has-child open">
+                    <li>
+                        <a href="dash.html" class="active">
+                            <span class="nav-icon uil uil-create-dashboard"></span>
+                            <span class="menu-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="pos.html" class="">
+                            <span class="nav-icon uil uil-window-section"></span>
+                            <span class="menu-text">Point Of Sale</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="stocks.html" class="">
+                            <span class="nav-icon uil uil-arrow-growth"></span>
+                            <span class="menu-text">Stock Management</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reports.html" class="">
+                            <span class="nav-icon uil uil-arrow-growth"></span>
+                            <span class="menu-text">Financial Reports</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="settings.html">
+                            <span class="nav-icon uil "></span>
+                            <span class="menu-text">Settings</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="#">
+                            <span class="nav-icon uil uil-sign-out-alt"></span>
+                            <span class="menu-text">Sign Out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!------Main Content------>
+    <div class="contents">
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+                    <div class="breadcrumb-main">
+                        <h4 class="text-capitalize breadcrumb-title">Stocks</h4>
+                        <div class="breadcrumb-action justify-content-center flex-wrap">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="#"><i class="uil uil-estate"></i>Stocks</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <!------ Data Insights ------->
+                <div class="col-xxl-12">
+                    <div class="row">
+                        <div class="col-xxl-3 col-sm-3 mb-25">
+                            <!-- Card 1  -->
+                            <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
+                                <div class="overview-content w-100">
+                                    <div class="ap-po-details-content d-flex flex-wrap justify-content-between">
+                                        <div class="ap-po-details__titlebar">
+                                            <h1>100+</h1>
+                                            <p>Total Products</p>
+                                        </div>
+                                        <div class="ap-po-details__icon-area">
+                                            <div
+                                                    class="svg-icon order-bg-opacity-primary color-primary"
+                                            >
+                                                <i class="uil uil-briefcase-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 1 End  -->
+                        </div>
+                        <div class="col-xxl-3 col-sm-3 mb-25">
+                            <!-- Card 2 -->
+                            <div
+                                    class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between"
+                            >
+                                <div class="overview-content w-100">
+                                    <div
+                                            class="ap-po-details-content d-flex flex-wrap justify-content-between"
+                                    >
+                                        <div class="ap-po-details__titlebar">
+                                            <h1>30,825</h1>
+                                            <p>Total Orders</p>
+                                        </div>
+                                        <div class="ap-po-details__icon-area">
+                                            <div
+                                                    class="svg-icon order-bg-opacity-info color-info"
+                                            >
+                                                <i class="uil uil-shopping-cart-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Card 2 End  -->
+                        </div>
+                        <div class="col-xxl-3 col-sm-3 mb-25">
+                            <!-- Card 3 -->
+                            <div
+                                    class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between"
+                            >
+                                <div class="overview-content w-100">
+                                    <div
+                                            class="ap-po-details-content d-flex flex-wrap justify-content-between"
+                                    >
+                                        <div class="ap-po-details__titlebar">
+                                            <h1>$30,825</h1>
+                                            <p>Total Sales</p>
+                                        </div>
+                                        <div class="ap-po-details__icon-area">
+                                            <div
+                                                    class="svg-icon order-bg-opacity-secondary color-secondary"
+                                            >
+                                                <i class="uil uil-usd-circle"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Card 3 End  -->
+                        </div>
+                        <div class="col-xxl-3 col-sm-3 mb-25">
+                            <!-- Card 4  -->
+                            <div
+                                    class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between"
+                            >
+                                <div class="overview-content w-100">
+                                    <div
+                                            class="ap-po-details-content d-flex flex-wrap justify-content-between"
+                                    >
+                                        <div class="ap-po-details__titlebar">
+                                            <h1>30,825</h1>
+                                            <p>New Customers</p>
+                                        </div>
+                                        <div class="ap-po-details__icon-area">
+                                            <div
+                                                    class="svg-icon order-bg-opacity-warning color-warning"
+                                            >
+                                                <i class="uil uil-users-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Card 4 End  -->
+                        </div>
+                    </div>
+                </div>
+                <!------- End of Data Insights ------->
+
+                <!------- Action Panel -------->
+                <div class="col-12">
+                    <div class="card card-default card-md mb-4">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12 row">
+                                    <div class="col-sm-3">
+                                        <button type="button" class="btn btn-default btn-squared color-light btn-outline-light px-20" data-bs-toggle="modal" data-bs-target="#addSingleProduct">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="svg replaced-svg"
+                                            >
+                                                <path
+                                                        d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                                                ></path>
+                                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                                </svg
+                                            >Add product
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button class="btn btn-default btn-squared color-light btn-outline-light px-20" data-bs-toggle="modal" data-bs-target="#addCsv">
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="svg replaced-svg"
+                                            >
+                                                <path
+                                                        d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                                                ></path>
+                                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                                </svg
+                                            >Upload CSV
+                                        </button>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <button
+                                                class="btn btn-default btn-squared color-light btn-outline-light px-20"
+                                        >
+                                            <svg
+                                                    xmlns="http://www.w3.org/2000/svg"
+                                                    width="24"
+                                                    height="24"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="svg replaced-svg"
+                                            >
+                                                <path
+                                                        d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                                                ></path>
+                                                <line x1="3" y1="6" x2="21" y2="6"></line>
+                                                <path d="M16 10a4 4 0 0 1-8 0"></path>
+                                                </svg>
+                                            Add Multiple Product
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!------- End of Action Panel -------->
+
+                <!------- Stock Table -------->
+                <div class="col-xxl-12">
+                    <div
+                            class="support-ticket-system support-ticket-system--search"
+                    >
+                        <div
+                                class="breadcrumb-main m-0 breadcrumb-main--table justify-content-sm-between"
+                        >
+                            <div
+                                    class="d-flex flex-wrap justify-content-center breadcrumb-main__wrapper"
+                            >
+                                <div
+                                        class="d-flex align-items-center ticket__title justify-content-center me-md-25 mb-md-0 mb-20"
+                                >
+                                    <h4 class="text-capitalize fw-500 breadcrumb-title">
+                                        Stock Product Table
+                                    </h4>
+                                </div>
+                            </div>
+                            <div class="action-btn">
+                                <a href="#" class="btn btn-primary">
+                                    Export
+                                    <i class="las la-angle-down"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div
+                                class="support-form datatable-support-form d-flex justify-content-xxl-between justify-content-left align-items-center flex-wrap"
+                        >
+                            <div class="support-form__input">
+                                <div class="d-flex flex-wrap">
+                                    <div class="support-form__input-id"></div>
+                                </div>
+                            </div>
+                            <div class="support-form__search">
+                                <div class="support-order-search">
+                                    <form class="support-order-search__form">
+                                        <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                width="24"
+                                                height="24"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                class="svg replaced-svg"
+                                        >
+                                            <circle cx="11" cy="11" r="8"></circle>
+                                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+
+                                        </svg>
+                                        <input
+                                                class="form-control border-0 box-shadow-none"
+                                                type="search"
+                                                placeholder="Search"
+                                                aria-label="Search"
+                                        />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div
+                                class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1"
+                        >
+                            <div class="table-responsive">
+                                <table class="table mb-0 table-borderless">
+                                    <thead>
+                                    <tr class="userDatatable-header">
+                                        <th>
+                                            <span class="userDatatable-title">ID</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Name</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Cost Price</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Selling Price</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Quantity</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Expiry Date</span>
+                                        </th>
+                                        <th>
+                                            <span class="userDatatable-title">Category</span>
+                                        </th>
+                                        <th class="actions">
+                                            <span class="userDatatable-title">Actions</span>
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="productTableBody">
+                                    <tr th:each="product : ${products}">
+                                        <td>#01</td>
+                                        <td>
+                                            <div class="d-flex">
+                                                <div class="userDatatable-inline-title">
+                                                    <a href="#" class="text-dark fw-500">
+                                                        <h6 th:insert="${product.name}">Paracetamol</h6>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="userDatatable-content--subject" th:insert="${product.costPrice}">
+                                                United Street
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="userDatatable-content--subject" th:insert="${product.sellingPrice}">
+                                                Business Development
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="userDatatable-content--priority" th:insert="${product.quantityInStock}">
+                                                Web Developer
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="userDatatable-content--priority" th:insert="${product.expiryDate}">
+                                                January 20, 2020
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="userDatatable-content-subject" th:insert="${product.categoryId}">
+                                                Pain killer
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <ul class="orderDatatable_actions mb-0 d-flex flex-wrap">
+                                                <li>
+                                                    <a href="#" class="update">
+                                                        <i class="uil uil-edit"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="" class="remove">
+                                                        <i class="uil uil-trash-alt"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex justify-content-end pt-30">
+                                <nav class="dm-page">
+                                    <ul class="dm-pagination d-flex">
+                                        <li class="dm-pagination__item">
+                                            <a
+                                                    href="#"
+                                                    class="dm-pagination__link pagination-control"
+                                            ><span class="la la-angle-left"></span
+                                            ></a>
+                                            <a href="#" class="dm-pagination__link"
+                                            ><span class="page-number">1</span></a
+                                            >
+                                            <a href="#" class="dm-pagination__link active"
+                                            ><span class="page-number">2</span></a
+                                            >
+                                            <a href="#" class="dm-pagination__link"
+                                            ><span class="page-number">3</span></a
+                                            >
+                                            <a
+                                                    href="#"
+                                                    class="dm-pagination__link pagination-control"
+                                            ><span class="page-number">...</span></a
+                                            >
+                                            <a href="#" class="dm-pagination__link"
+                                            ><span class="page-number">12</span></a
+                                            >
+                                            <a
+                                                    href="#"
+                                                    class="dm-pagination__link pagination-control"
+                                            ><span class="la la-angle-right"></span
+                                            ></a>
+                                            <a href="#" class="dm-pagination__option"> </a>
+                                        </li>
+                                        <li class="dm-pagination__item">
+                                            <div class="paging-option">
+                                                <select name="page-number" class="page-selection">
+                                                    <option value="20">20/page</option>
+                                                    <option value="40">40/page</option>
+                                                    <option value="60">60/page</option>
+                                                </select>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!------- End of Stock Table ---------->
+            </div>
+
+        </div>
+        <!------ End of Main Content ---->
+
+        <footer class="footer-wrapper">
+            <div class="footer-wrapper__inside">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="footer-copyright">
+                                <p><span>© 2023</span><a href="#">Sovware</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="footer-menu text-end">
+                                <ul>
+                                    <li>
+                                        <a href="#">About</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Team</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- ends: .Footer Menu -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</main>
+<!--  End of Main Content  -->
+<div id="overlayer">
+    <div class="loader-overlay">
+        <div class="dm-spin-dots spin-lg">
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+        </div>
+    </div>
+</div>
+<div class="overlay-dark-sidebar"></div>
+<div class="customizer-overlay"></div>
+
+
+
+<!------- In-page Modals ---------->
+
+<!----- Start Add Single Product Modal ------>
+<div class="modal-basic modal fade show" id="addSingleProduct" tabindex="-1" role="dialog" aria-hidden="true">
+
+
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-bg-white ">
+            <div class="modal-header">
+
+
+
+                <h6 class="modal-title">Add Single Product</h6>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <img src="img/svg/x.svg" alt="x" class="svg">
+                </button>
+            </div>
+            <form id="addSingleProductForm" action="/saveProduct" th:object="${product}" method="post">
+                <div class="modal-body">
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="nameOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Name of Product</label>
+                                <input type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="nameOfProduct" th:field="*{name}" placeholder="Enter Name of Product/Medicine">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="costOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Cost Price of Product</label>
+                                <input type="number" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="costOfProduct" th:field="*{costPrice}" placeholder="Enter Cost Price">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="sellingPriceOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Selling Price of Product</label>
+                                <input type="number" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="sellingPriceOfProduct" th:field="*{sellingPrice}" placeholder="Enter Selling Price">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="qtyInStock" class="color-dark fs-14 fw-500 align-center mb-10">Quantity in Stock</label>
+                                <input type="number" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="qtyInStock" th:field="*{quantityInStock}" placeholder="Enter Quantity">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="expiryDate" class="color-dark fs-14 fw-500 align-center mb-10">Expiry Date</label>
+                                <input type="date" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="expiryDate" th:field="*{expiryDate}" placeholder="Choose Expiry Date">
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label for="category" class="color-dark fs-14 fw-500 align-center mb-10">Category Name</label>
+                                <input type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="category" th:field="*{categoryId}" placeholder="Enter Name of Category">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!------ End of Add Single Product Modal ------>
+
+
+<!----- Start CSV/Batch Products Modal ------>
+<div class="modal-basic modal fade show" id="addCsv" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content modal-bg-white ">
+            <div class="modal-header">
+
+                <h6 class="modal-title">Upload CSV Stock Multiple Products</h6>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <img src="img/svg/x.svg" alt="x" class="svg">
+                </button>
+            </div>
+            <form id="csvUploadForm">
+                <div class="modal-body">
+                    <div class="dm-upload">
+                        <div class="dm-upload__button">
+                            <a href="javascript:void(0)" class="btn btn-lg btn-outline-lighten btn-upload" onclick="$('#upload-2').click()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg replaced-svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line>
+                                </svg>
+                                Upload
+                            </a>
+                            <input type="file" name="csvFile" id="upload-2" class="upload-one" accept=".csv">
+                        </div>
+                        <div class="dm-upload__file">
+                            <ul id="uploadedFileList">
+                                <!-- List of uploaded files will appear here -->
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
+                    <button type="button" class="btn btn-secondary btn-sm" id="cancelButton" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!------ End of CSV/Batch Products Modal ------>
+
+<!------ Start Update Single Product Modal ---->
+<div class="modal fade" id="updateProductModal" tabindex="-1" role="dialog" aria-labelledby="updateProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateProductModalLabel">Update Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="updateProductForm" action="/products/" method="post">
+                <div class="modal-body">
+<!--                    <input type="hidden" id="updateProductId" name="productId" value="">-->
+                    <div class="form-group">
+                        <label for="updateNameOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Name of Product</label>
+                        <input type="text" class="form-control" id="updateNameOfProduct" name="name" placeholder="Enter Name of Product/Medicine">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateCostOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Cost Price of Product</label>
+                        <input type="number" class="form-control" id="updateCostOfProduct" name="costPrice" placeholder="Enter Cost Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateSellingPriceOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Selling Price of Product</label>
+                        <input type="number" class="form-control" id="updateSellingPriceOfProduct" name="sellingPrice" placeholder="Enter Selling Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateQtyInStock" class="color-dark fs-14 fw-500 align-center mb-10">Quantity in Stock</label>
+                        <input type="number" class="form-control" id="updateQtyInStock" name="quantityInStock" placeholder="Enter Quantity">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateExpiryDate" class="color-dark fs-14 fw-500 align-center mb-10">Expiry Date</label>
+                        <input type="date" class="form-control" id="updateExpiryDate" name="expiryDate" placeholder="Choose Expiry Date">
+                    </div>
+                    <div class="form-group">
+                        <label for="updateCategory" class="color-dark fs-14 fw-500 align-center mb-10">Category Name</label>
+                        <input type="text" class="form-control" id="updateCategory" name="categoryId" placeholder="Enter Name of Category">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!------ End Update Single Product Modal ---->
+
+<!------- End of In-page Modals --------->
+
+
+
+
+<!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!--
+<script>
+// Start Populate Product Table Script
+function fetchAndDisplayProducts() {
+        $.get("/products", function (products) {
+            // Clear existing table rows
+            $("#productTableBody").empty();
+
+            // Initialize increment counter
+            let idCounter = 0;
+
+            // Iterate through each product and append a row to the table
+            $.each(products, function (index, product) {
+                idCounter++; //Increment the counter for each product
+                let row = "<tr data-product-id='" + product.id + "'>" +
+                    "<td>" + idCounter + "</td>" +
+                    "<td>" + product.name + "</td>" +
+                    "<td>" + product.costPrice + "</td>" +
+                    "<td>" + product.sellingPrice + "</td>" +
+                    "<td>" + product.quantityInStock + "</td>" +
+                    "<td>" + product.expiryDate + "</td>" +
+                    "<td>" + product.categoryId + "</td>" +
+                    "<td><ul class='orderDatatable_actions mb-0 d-flex flex-wrap'>" +
+                    "<li><a href='#' class='update' data-product-id='" + product.id + "'><i class='uil uil-edit'></i></a></li>" +
+                    "<li><a href='#' class='remove'><i class='uil uil-trash-alt'></i></a></li>" +
+                    "</ul></td>" +
+                    "</tr>";
+                $("#productTableBody").append(row);
+            });
+        });
+    }
+// End Populate Product Table Script
+
+// Start Fetch Products into table when page load
+ $(document).ready(function() {
+        fetchAndDisplayProducts();
+    });
+// End Fetch Products into table when page load
+
+// Start Add Single Product Script
+$("#addSingleProductForm").submit(function(e) {
+    e.preventDefault();
+
+    // Serialize form data
+    let formData = $(this).serialize();
+
+    // Submit AJAX request to add product
+    $.post("/saveProduct", formData)
+        .done(function(response) {
+            console.log("Product added successfully:", response);
+            // Clear form fields
+            $('#addSingleProductForm')[0].reset();
+            // Refresh the product table after adding the product
+            fetchAndDisplayProducts();
+            // Close the modal
+            $('#addSingleProduct').modal('hide');
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Error adding product:", errorThrown);
+        });
+});
+// End Add Single Product Script
+
+// Start Update Product Script
+$(document).on('click', '.update', function(e) {
+    e.preventDefault();
+
+    // Get the product ID from the table row
+    let productId = $(this).closest('tr').data('product-id');
+
+    // Fetch the product data for the given ID
+    $.get("/products/" + productId, function(product) {
+
+        // Populate the modal form fields with the fetched product data
+        $("#updateProductModal #updateNameOfProduct").val(product.name);
+        $("#updateProductModal #updateCostOfProduct").val(product.costPrice);
+        $("#updateProductModal #updateSellingPriceOfProduct").val(product.sellingPrice);
+        $("#updateProductModal #updateQtyInStock").val(product.quantityInStock);
+        $("#updateProductModal #updateExpiryDate").val(product.expiryDate);
+        $("#updateProductModal #updateCategory").val(product.categoryId);
+
+        // Set the product ID in a hidden field within the form
+        $("#updateProductModal #updateProductId").val(productId);
+
+        // Show the modal
+        $('#updateProductModal').modal('show');
+
+        // Log the product details to the console
+        console.log("Product Details:", product);
+
+    });
+});
+
+// Form submission for updating product
+$("#updateProductForm").submit(function(e) {
+    e.preventDefault();
+
+    // Get the product ID
+    let productId = $("#updateProductId").val();
+
+    // Serialize form data
+    let formData = $(this).serialize();
+
+    // Submit AJAX request to update product
+    $.post("/updateProduct/" + productId, formData)
+        .done(function(response) {
+            console.log("Product updated successfully:", response);
+            // Refresh the product table after updating the product
+            fetchAndDisplayProducts();
+            // Close the modal
+            $('#updateProductModal').modal('hide');
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Error updating product:", errorThrown);
+
+        });
+});
+// End Update Product Script
+
+
+// Start Add CSV/Batch Script
+ $(document).ready(function () {
+        // Function to handle file upload
+        $('#upload-2').on('change', function () {
+            let fileList = $(this)[0].files;
+            let uploadedFileList = $('#uploadedFileList');
+
+            // Clear existing file list
+            uploadedFileList.empty();
+
+            // Iterate through each file and append it to the list
+            $.each(fileList, function (index, file) {
+                let fileName = file.name;
+                let listItem = '<li>' +
+                    '<a href="#" class="file-name"><i class="las la-paperclip"></i> <span class="name-text">' + fileName + '</span></a>' +
+                    '<a href="#" class="btn-delete"><i class="la la-trash"></i></a>' +
+                    '</li>';
+                uploadedFileList.append(listItem);
+            });
+        });
+
+        // Function to handle file deletion
+        $('#uploadedFileList').on('click', '.btn-delete', function (e) {
+            e.preventDefault();
+            $(this).closest('li').remove();
+        });
+
+        // Function to handle form submission
+        $('#csvUploadForm').submit(function (e) {
+            e.preventDefault();
+
+            let formData = new FormData($(this)[0]);
+
+            // Add your form submission logic here
+            $.ajax({
+                url: '/batch',
+                type: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (response) {
+                    // Handle success response
+                    console.log(fetchAndDisplayProducts());
+
+                    // After adding, fetch and display products
+                    fetchAndDisplayProducts();
+                },
+                error: function (xhr, status, error) {
+                    // Handle error response
+                    console.error('Error uploading files:', response.message);
+                }
+            });
+
+
+        });
+
+        // Handle cancel button click event
+        $('#cancelButton').on('click', function() {
+            // Clear the file input
+            $('#upload-2').val('');
+            // Clear the uploaded file list
+            $('#uploadedFileList').empty();
+        });
+    });
+// End Add CSV/Batch Script
+</script>
+-->
+
+
+<script src="scripts/stocks_functionality.js"></script>
+
+
+
+<!--<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBgYKHZB_QKKLWfIRaYPCadza3nhTAbv7c"></script>-->
+<!-- inject:js-->
+<script src="assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
+<script src="assets/vendor_assets/js/jquery/jquery-ui.js"></script>
+<script src="assets/vendor_assets/js/bootstrap/popper.js"></script>
+<script src="assets/vendor_assets/js/bootstrap/bootstrap.min.js"></script>
+<script src="assets/vendor_assets/js/moment/moment.min.js"></script>
+<script src="assets/vendor_assets/js/accordion.js"></script>
+<script src="assets/vendor_assets/js/apexcharts.min.js"></script>
+<script src="assets/vendor_assets/js/autoComplete.js"></script>
+<script src="assets/vendor_assets/js/Chart.min.js"></script>
+<script src="assets/vendor_assets/js/daterangepicker.js"></script>
+<script src="assets/vendor_assets/js/drawer.js"></script>
+<script src="assets/vendor_assets/js/dynamicBadge.js"></script>
+<script src="assets/vendor_assets/js/dynamicCheckbox.js"></script>
+<script src="assets/vendor_assets/js/footable.min.js"></script>
+<script src="assets/vendor_assets/js/fullcalendar@5.2.0.js"></script>
+<script src="assets/vendor_assets/js/google-chart.js"></script>
+<script src="assets/vendor_assets/js/jquery-jvectormap-2.0.5.min.js"></script>
+<script src="assets/vendor_assets/js/jquery-jvectormap-world-mill-en.js"></script>
+<script src="assets/vendor_assets/js/jquery.countdown.min.js"></script>
+<script src="assets/vendor_assets/js/jquery.filterizr.min.js"></script>
+<script src="assets/vendor_assets/js/jquery.magnific-popup.min.js"></script>
+<script src="assets/vendor_assets/js/jquery.peity.min.js"></script>
+<script src="assets/vendor_assets/js/jquery.star-rating-svg.min.js"></script>
+<script src="assets/vendor_assets/js/leaflet.js"></script>
+<script src="assets/vendor_assets/js/leaflet.markercluster.js"></script>
+<script src="assets/vendor_assets/js/loader.js"></script>
+<script src="assets/vendor_assets/js/message.js"></script>
+<script src="assets/vendor_assets/js/moment.js"></script>
+<script src="assets/vendor_assets/js/muuri.min.js"></script>
+<script src="assets/vendor_assets/js/notification.js"></script>
+<script src="assets/vendor_assets/js/popover.js"></script>
+<script src="assets/vendor_assets/js/select2.full.min.js"></script>
+<script src="assets/vendor_assets/js/slick.min.js"></script>
+<script src="assets/vendor_assets/js/trumbowyg.min.js"></script>
+<script src="assets/vendor_assets/js/wickedpicker.min.js"></script>
+<script src="assets/theme_assets/js/apexmain.js"></script>
+<script src="assets/theme_assets/js/charts.js"></script>
+<script src="assets/theme_assets/js/drag-drop.js"></script>
+<script src="assets/theme_assets/js/footable.js"></script>
+<script src="assets/theme_assets/js/full-calendar.js"></script>
+<!--<script src="assets/theme_assets/js/googlemap-init.js"></script>-->
+<script src="assets/theme_assets/js/icon-loader.js"></script>
+<script src="assets/theme_assets/js/jvectormap-init.js"></script>
+<script src="assets/theme_assets/js/leaflet-init.js"></script>
+<script src="assets/theme_assets/js/main.js"></script>
+<!-- endinject-->
+</body>
+
+</html>

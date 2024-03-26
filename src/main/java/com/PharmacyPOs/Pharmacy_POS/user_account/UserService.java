@@ -38,15 +38,16 @@ public class UserService {
 */
 
 //     Checks if a user is not already registered then it creates the user in the db
-    public User registerUser(String email, String firstname, String password, String surname, String phoneNumber, String location, String pharmacyName, String pharmacyType) {
+    public User registerUser(String firstname, String surname, String phoneNumber, String email, String pharmacyName, String password, String location, String pharmacyType) {
         User existingUser = userRepository.findByEmail(email);
         if (existingUser != null) {
 //            throw new UserAlreadyExistException("A user with the email address " + user.getEmail() + " already exists.");
         }
-        String hashPassword = passwordEncoder(password);
+//        String hashPassword = passwordEncoder(password);
 
-        User user = new User(firstname, surname, phoneNumber, email, pharmacyName, hashPassword, location, pharmacyType);
+        User user = new User(firstname, surname, phoneNumber, email, pharmacyName, password, location, pharmacyType);
         return userRepository.save(user);
+
     }
 
 

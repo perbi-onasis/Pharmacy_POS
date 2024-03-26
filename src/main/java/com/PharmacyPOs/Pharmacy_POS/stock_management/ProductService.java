@@ -28,9 +28,6 @@ public class ProductService {
         return productRepository.findById(id).orElse(null);
     }
 
-    public void deleteById(String id) {
-        productRepository.deleteById(id);
-    }
 
     public Product update(String id,  Product product) {
         product = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found with ID: " + id));
@@ -56,5 +53,16 @@ public class ProductService {
     @Autowired
     public List<Product> getAllProducts() {
         return (List<Product>) productRepository.findAll();
+    }
+
+
+    public boolean deleteById(String productId){
+        try{
+            productRepository.deleteById(productId);
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
     }
 }

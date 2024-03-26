@@ -11,8 +11,8 @@ public class Product {
     @Id
     private String id;
     private String name;
-    private double costPrice;
-    private double sellingPrice;
+    private float costPrice;
+    private float sellingPrice;
     private int quantityInStock;
     private LocalDate expiryDate;
     private String categoryId;
@@ -23,15 +23,13 @@ public class Product {
     }
 
 
-    public Product(String id, String name, double costPrice, double sellingPrice, int quantityInStock, LocalDate expiryDate, String categoryId, int version) {
-        this.id = id;
+    public Product(String name, float costPrice, float sellingPrice, int quantityInStock, LocalDate expiryDate, String categoryId) {
         this.name = name;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
         this.quantityInStock = quantityInStock;
         this.expiryDate = expiryDate;
         this.categoryId = categoryId;
-        this.version = version;
     }
 
     public String getId() {
@@ -50,19 +48,19 @@ public class Product {
         this.name = name;
     }
 
-    public double getCostPrice() {
+    public float getCostPrice() {
         return costPrice;
     }
 
-    public void setCostPrice(double costPrice) {
+    public void setCostPrice(float costPrice) {
         this.costPrice = costPrice;
     }
 
-    public double getSellingPrice() {
+    public float getSellingPrice() {
         return sellingPrice;
     }
 
-    public void setSellingPrice(double sellingPrice) {
+    public void setSellingPrice(float sellingPrice) {
         this.sellingPrice = sellingPrice;
     }
 
