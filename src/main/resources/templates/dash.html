@@ -342,13 +342,13 @@
          <div class="sidebar sidebar-collapse" id="sidebar" >
             <div class="sidebar__menu-group">
                <ul class="sidebar_nav has-child open">
-                  <li class="has-child open">
+                  <li>
                      <a href="dash.html" class="active">
                         <span class="nav-icon uil uil-create-dashboard"></span>
                         <span class="menu-text">Dashboard</span>
                      </a>
                   </li>
-                  <li class="has-child">
+                  <li>
                      <a href="pos.html" class="">
                         <span class="nav-icon uil uil-window-section"></span>
                         <span class="menu-text">Point Of Sale</span>
@@ -360,20 +360,20 @@
                         <span class="menu-text">Stock Management</span>
                      </a>
                   </li>
-                  <li>
-                     <a href="reports.html" class="">
-                        <span class="nav-icon uil uil-arrow-growth"></span>
-                        <span class="menu-text">Financial Reports</span>
-                     </a>
-                  </li>
+<!--                  <li>-->
+<!--                     <a href="reports.html" class="">-->
+<!--                        <span class="nav-icon uil uil-arrow-growth"></span>-->
+<!--                        <span class="menu-text">Financial Reports</span>-->
+<!--                     </a>-->
+<!--                  </li>-->
+                  <!--<li class="">
+                      <a href="settings.html">
+                          <span class="nav-icon uil "></span>
+                          <span class="menu-text">Settings</span>
+                      </a>
+                  </li>-->
                   <li class="">
-                     <a href="settings.html">
-                        <span class="nav-icon uil "></span>
-                        <span class="menu-text">Settings</span>
-                     </a>
-                  </li>
-                  <li class="">
-                     <a href="#">
+                     <a th:href="*{login}">
                         <span class="nav-icon uil uil-sign-out-alt"></span>
                         <span class="menu-text">Sign Out</span>
                      </a>
@@ -383,7 +383,7 @@
          </div>
       </div>
 
-      <div class="contents">
+      <div class="contents expanded">
 
          <div class="crm mb-25">
             <div class="container-fluid">
@@ -403,132 +403,93 @@
                      </div>
 
                   </div>
-                  <div class="col-xxl-6">
+                  <div class="col-xxl-12">
                      <div class="row">
-                        <div class="col-xxl-6 col-sm-6 mb-25">
-                           <!-- Card 1  -->
+
+                        <!-- Total Products Card  -->
+                        <div class="col-xxl-3 col-sm-6 mb-25">
                            <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-
-
-
-
-
                               <div class="overview-content w-100">
                                  <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
                                     <div class="ap-po-details__titlebar">
-                                       <h1>100+</h1>
+                                       <h1 class="totalProducts">100+</h1>
                                        <p>Total Products</p>
                                     </div>
                                     <div class="ap-po-details__icon-area">
                                        <div class="svg-icon order-bg-opacity-primary color-primary">
-
                                           <i class="uil uil-briefcase-alt"></i>
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="ap-po-details-time">
-                                    <span class="color-success"><i class="las la-arrow-up"></i>
-                                       <strong>25.36%</strong></span>
-                                    <small>Since last month</small>
-                                 </div>
                               </div>
-
                            </div>
-                           <!-- Card 1 End  -->
                         </div>
-                        <div class="col-xxl-6 col-sm-6 mb-25">
-                           <!-- Card 2 -->
+                        <!-- Total Products Card End  -->
+
+                        <!-- Total Sales Card -->
+                        <div class="col-xxl-3 col-sm-6 mb-25">
                            <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-
-
-
-
-
                               <div class="overview-content w-100">
                                  <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
                                     <div class="ap-po-details__titlebar">
-                                       <h1>30,825</h1>
-                                       <p>Total Orders</p>
-                                    </div>
-                                    <div class="ap-po-details__icon-area">
-                                       <div class="svg-icon order-bg-opacity-info color-info">
-
-                                          <i class="uil uil-shopping-cart-alt"></i>
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="ap-po-details-time">
-                                    <span class="color-success"><i class="las la-arrow-up"></i>
-                                       <strong>25.36%</strong></span>
-                                    <small>Since last month</small>
-                                 </div>
-                              </div>
-
-                           </div>
-                           <!-- Card 2 End  -->
-                        </div>
-                        <div class="col-xxl-6 col-sm-6 mb-25">
-                           <!-- Card 3 -->
-                           <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-
-
-
-
-
-                              <div class="overview-content w-100">
-                                 <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
-                                    <div class="ap-po-details__titlebar">
-                                       <h1>$30,825</h1>
+                                       <h1 class="totalSales">30,825</h1>
                                        <p>Total Sales</p>
                                     </div>
                                     <div class="ap-po-details__icon-area">
-                                       <div class="svg-icon order-bg-opacity-secondary color-secondary">
+                                       <div class="svg-icon order-bg-opacity-info color-info">
 
                                           <i class="uil uil-usd-circle"></i>
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="ap-po-details-time">
-                                    <span class="color-danger"><i class="las la-arrow-down"></i>
-                                       <strong>25.36%</strong></span>
-                                    <small>Since last month</small>
-                                 </div>
                               </div>
 
                            </div>
-                           <!-- Card 3 End  -->
                         </div>
-                        <div class="col-xxl-6 col-sm-6 mb-25">
-                           <!-- Card 4  -->
+                        <!-- Total Sales Card End  -->
+
+                        <!-- Total Orders Card -->
+                        <div class="col-xxl-3 col-sm-6 mb-25">
                            <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
-
-
-
-
-
                               <div class="overview-content w-100">
                                  <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
                                     <div class="ap-po-details__titlebar">
-                                       <h1>30,825</h1>
-                                       <p>New Customers</p>
+                                       <h1 class="totalOrder">$30,825</h1>
+                                       <p>Total Orders</p>
+                                    </div>
+                                    <div class="ap-po-details__icon-area">
+                                       <div class="svg-icon order-bg-opacity-secondary color-secondary">
+
+                                          <i class="uil uil-shopping-cart-alt"></i>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Total Orders Card End  -->
+
+                        <!-- Total Products Sold Card -->
+                        <div class="col-xxl-3 col-sm-6 mb-25">
+                           <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
+                              <div class="overview-content w-100">
+                                 <div class=" ap-po-details-content d-flex flex-wrap justify-content-between">
+                                    <div class="ap-po-details__titlebar">
+                                       <h1 class="totalProductsSold">30,825</h1>
+                                       <p>Products Sold</p>
                                     </div>
                                     <div class="ap-po-details__icon-area">
                                        <div class="svg-icon order-bg-opacity-warning color-warning">
 
-                                          <i class="uil uil-users-alt"></i>
+                                          <i class="uil uil-briefcase-alt"></i>
                                        </div>
                                     </div>
-                                 </div>
-                                 <div class="ap-po-details-time">
-                                    <span class="color-success"><i class="las la-arrow-up"></i>
-                                       <strong>25.36%</strong></span>
-                                    <small>Since last month</small>
                                  </div>
                               </div>
 
                            </div>
-                           <!-- Card 4 End  -->
                         </div>
+                        <!-- Total Products Sold Card End -->
                      </div>
                   </div>
 
@@ -551,12 +512,12 @@
                               </ul>
                            </div>
                         </div>
-                        <div class="card-body p-0">
+                        <!--<div class="card-body p-0">
                            <div class="tab-content">
                               <div class="tab-pane fade active show" id="t_selling-today" role="tabpanel" aria-labelledby="t_selling-today-tab">
                                  <div class="selling-table-wrap">
                                     <div class="table-responsive">
-                                       <table class="table table--default table-borderless">
+                                       <table class="table table&#45;&#45;default table-borderless">
                                           <thead>
                                              <tr>
                                                 <th>PRDUCTS NAME</th>
@@ -629,7 +590,7 @@
                               <div class="tab-pane fade" id="t_selling-week" role="tabpanel" aria-labelledby="t_selling-week-tab">
                                  <div class="selling-table-wrap">
                                     <div class="table-responsive">
-                                       <table class="table table--default table-borderless">
+                                       <table class="table table&#45;&#45;default table-borderless">
                                           <thead>
                                              <tr>
                                                 <th>PRDUCTS NAME</th>
@@ -702,7 +663,7 @@
                               <div class="tab-pane fade" id="t_selling-month" role="tabpanel" aria-labelledby="t_selling-month-tab">
                                  <div class="selling-table-wrap">
                                     <div class="table-responsive">
-                                       <table class="table table--default table-borderless">
+                                       <table class="table table&#45;&#45;default table-borderless">
                                           <thead>
                                              <tr>
                                                 <th>PRDUCTS NAME</th>
@@ -773,15 +734,15 @@
                                  </div>
                               </div>
                            </div>
-                        </div>
+                        </div>-->
                      </div>
 
                   </div>
-                  <div class="col-xxl-6 col-lg-6 mb-25">
+                 <!-- <div class="col-xxl-6 col-lg-6 mb-25">
 
                      <div class="card border-0 px-25 browser-states">
                         <div class="card-header px-0 border-0">
-                           <h6>Browser States</h6>
+                           <h6>Out of Stock Products</h6>
                            <div class="card-extra">
                               <ul class="card-tab-links nav-tabs nav" role="tablist">
                                  <li>
@@ -801,7 +762,7 @@
                               <div class="tab-pane fade active show" id="t_selling-today2" role="tabpanel" aria-labelledby="t_selling-today2-tab">
                                  <div class="selling-table-wrap">
                                     <div class="table-responsive">
-                                       <table class="table table--default table-borderless">
+                                       <table class="table table&#45;&#45;default table-borderless">
                                           <thead>
                                              <tr>
                                                 <th>Browsers</th>
@@ -885,7 +846,7 @@
                               <div class="tab-pane fade" id="t_selling-week2" role="tabpanel" aria-labelledby="t_selling-week2-tab">
                                  <div class="selling-table-wrap">
                                     <div class="table-responsive">
-                                       <table class="table table--default table-borderless">
+                                       <table class="table table&#45;&#45;default table-borderless">
                                           <thead>
                                              <tr>
                                                 <th>Customer</th>
@@ -969,7 +930,7 @@
                               <div class="tab-pane fade" id="t_selling-month3" role="tabpanel" aria-labelledby="t_selling-month3-tab">
                                  <div class="selling-table-wrap">
                                     <div class="table-responsive">
-                                       <table class="table table--default table-borderless">
+                                       <table class="table table&#45;&#45;default table-borderless">
                                           <thead>
                                              <tr>
                                                 <th>Customer</th>
@@ -1054,7 +1015,7 @@
                         </div>
                      </div>
 
-                  </div>
+                  </div>-->
                </div>
                <!-- ends: .row -->
             </div>
@@ -1106,7 +1067,84 @@
    </div>
    <div class="overlay-dark-sidebar"></div>
    <div class="customizer-overlay"></div>
-   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBgYKHZB_QKKLWfIRaYPCadza3nhTAbv7c"></script>
+
+
+
+   <!-- Include jQuery library -->
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!--   In-Page Scripts -->
+<script>
+   // Start Total Number of Products
+   $(document).ready(function() {
+    // Fetch total products from "/products" endpoint
+    $.get("/products", function(data) {
+        // Extract total products count from the response data
+        let totalProductsCount = data.length;
+
+        // Update the content of the ".totalProducts" element with the total products count
+        $(".totalProducts").text(totalProductsCount);
+    });
+});
+// End Total Number of Products
+
+
+
+// Start Total Sales of Products
+// Function to fetch total sales volume
+function fetchSalesVolume() {
+    $.get("/pos/transactions")
+        .done(function(transactions) {
+            let totalSalesVolume = 0;
+            transactions.forEach(function(transaction) {
+                transaction.items.forEach(function(item) {
+                    let productId = item.id;
+                    let quantity = item.quantity;
+                    let price = item.price;
+
+                    // Fetch the product from the backend to ensure its existence
+                    $.get(`/products/${productId}`)
+                        .done(function(product) {
+                            if (product) {
+                                // Calculate sales volume only if the product exists
+                                totalSalesVolume += price * quantity;
+                            } else {
+                                console.error(`Product with ID ${productId} not found.`);
+                            }
+                        })
+                        .fail(function(xhr, status, error) {
+                            console.error("Failed to fetch product:", error);
+                        });
+                });
+            });
+
+            // Once all calculations are done, update the UI or perform further actions
+            console.log("Total Sales Volume:", totalSalesVolume);
+            // Update the UI or perform further actions with the totalSalesVolume value
+        })
+        .fail(function(xhr, status, error) {
+            console.error("Failed to fetch transactions:", error);
+        });
+}
+
+
+
+
+
+</script>
+
+<!--   In-Page Scripts -->
+
+
+
+
+
+
+
+
+
+
+<!--   <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBgYKHZB_QKKLWfIRaYPCadza3nhTAbv7c"></script>-->
    <!-- inject:js-->
    <script src="assets/vendor_assets/js/jquery/jquery-3.5.1.min.js"></script>
    <script src="assets/vendor_assets/js/jquery/jquery-ui.js"></script>
@@ -1148,7 +1186,7 @@
    <script src="assets/theme_assets/js/drag-drop.js"></script>
    <script src="assets/theme_assets/js/footable.js"></script>
    <script src="assets/theme_assets/js/full-calendar.js"></script>
-   <script src="assets/theme_assets/js/googlemap-init.js"></script>
+<!--   <script src="assets/theme_assets/js/googlemap-init.js"></script>-->
    <script src="assets/theme_assets/js/icon-loader.js"></script>
    <script src="assets/theme_assets/js/jvectormap-init.js"></script>
    <script src="assets/theme_assets/js/leaflet-init.js"></script>

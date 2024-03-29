@@ -100,7 +100,7 @@
                 <li class="nav-author">
                     <div class="dropdown-custom">
                         <a href="javascript:;" class="nav-item-toggle"><img src="img/author-nav.jpg" alt="" class="rounded-circle">
-                            <span class="nav-item__title">Danial<i class="las la-angle-down nav-item__arrow"></i></span>
+                            <span class="nav-item__title" th:text="${name}"><i class="las la-angle-down nav-item__arrow"></i></span>
                         </a>
                         <div class="dropdown-parent-wrapper">
                             <div class="dropdown-wrapper">
@@ -109,21 +109,21 @@
                                         <img src="img/author-nav.jpg" alt="" class="rounded-circle">
                                     </div>
                                     <div>
-                                        <h6>Rabbi Islam Rony</h6>
-                                        <span>UI Designer</span>
+                                        <h6 th:text="${name}"></h6>
+                                        <span th:text="${pharmacyName}"></span>
                                     </div>
                                 </div>
                                 <div class="nav-author__options">
                                     <ul>
-                                        <li>
+                                        <!--<li>
                                             <a href="">
                                                 <i class="uil uil-setting"></i>
                                                 Settings</a>
-                                        </li>
-                                        <li>
+                                        </li>-->
+                                        <!--<li>
                                             <a href="">
                                                 <i class="uil uil-bell"></i> Help</a>
-                                        </li>
+                                        </li>-->
                                     </ul>
                                     <a href="" class="nav-author__signout">
                                         <i class="uil uil-sign-out-alt"></i> Sign Out</a>
@@ -174,20 +174,20 @@
                             <span class="menu-text">Stock Management</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="reports.html" class="">
-                            <span class="nav-icon uil uil-arrow-growth"></span>
-                            <span class="menu-text">Financial Reports</span>
-                        </a>
-                    </li>
-                    <li class="">
+<!--                    <li>-->
+<!--                        <a href="reports.html" class="">-->
+<!--                            <span class="nav-icon uil uil-arrow-growth"></span>-->
+<!--                            <span class="menu-text">Financial Reports</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+                    <!--<li class="">
                         <a href="settings.html">
                             <span class="nav-icon uil "></span>
                             <span class="menu-text">Settings</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="">
-                        <a href="#">
+                        <a th:href="*{login}">
                             <span class="nav-icon uil uil-sign-out-alt"></span>
                             <span class="menu-text">Sign Out</span>
                         </a>
@@ -229,10 +229,10 @@
                                 </div>
                             </div>
                             <div class="action-btn">
-                                <a href="#" class="btn btn-primary">
+                                <!--<a href="#" class="btn btn-primary">
                                     Export
                                     <i class="las la-angle-down"></i>
-                                </a>
+                                </a>-->
                             </div>
                         </div>
 
@@ -343,59 +343,88 @@
 
             <!---- Order Cart -->
             <div class="col-4 mb-30">
-                <div class="card card-default card-md bg- ">
-                    <div class="card-header">
-                        <h6>Cart</h6>
-                        <button class="primary-button">Clear</button>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table id="cart" class="table table-borderless table-hover">
-                                <tbody id="cart-item">
+
+                <div class="col-12 mb-20">
+                    <div class="card card-default card-md ">
+                        <div class="card-header">
+                            <h6>Cart</h6>
+                            <button id="clearCartBtn" class="primary-button">Clear</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table id="cart" class="table table-borderless table-hover">
+                                    <tbody id="cart-item">
 
 
-                                <!--<tr>
+                                    <!--<tr>
 
-                                    <td>
-                                        <div class="medi a align-items-center">
-                                            <div class="media-body">
-                                                <h5 class="mt-0">Fiber base chair</h5>
-                                                <div class="price">$248.66</div>
+                                        <td>
+                                            <div class="medi a align-items-center">
+                                                <div class="media-body">
+                                                    <h5 class="mt-0">Fiber base chair</h5>
+                                                    <div class="price">$248.66</div>
+                                                </div>
+
                                             </div>
+                                        </td>
 
-                                        </div>
-                                    </td>
+                                        <td>
+                                            <div>
+                                                &lt;!&ndash; Start: Product Quantity &ndash;&gt;
+                                                <div class="quantity product-cart__quantity justify-content-between">
 
-                                    <td>
-                                        <div>
-                                            &lt;!&ndash; Start: Product Quantity &ndash;&gt;
-                                            <div class="quantity product-cart__quantity justify-content-between">
+                                                    <input type="button" value="-" class="qty-minus bttn bttn-left wh-36">
+                                                    <input type="number" value="1" class="qty qh-36 input overflow-hidden">
+                                                    <input type="button" value="+" class="qty-plus bttn bttn-right wh-36">
 
-                                                <input type="button" value="-" class="qty-minus bttn bttn-left wh-36">
-                                                <input type="number" value="1" class="qty qh-36 input overflow-hidden">
-                                                <input type="button" value="+" class="qty-plus bttn bttn-right wh-36">
+                                                    <button type="button" class="action-btn float-end ml">
+                                                        <i class="las la-trash-alt"></i>
+                                                    </button>
+                                                </div>
+                                                &lt;!&ndash; End: Product Quantity &ndash;&gt;
 
-                                                <button type="button" class="action-btn float-end ml">
-                                                    <i class="las la-trash-alt"></i>
-                                                </button>
                                             </div>
-                                            &lt;!&ndash; End: Product Quantity &ndash;&gt;
+                                        </td>
 
-                                        </div>
-                                    </td>
-
-                                </tr>-->
+                                    </tr>-->
 
 
-                                </tbody>
-                                <tfoot>
+                                    </tbody>
+                                    <tfoot>
 
-                                </tfoot>
-                            </table><!-- End: table -->
+                                    </tfoot>
+                                </table><!-- End: table -->
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-12">
+                    <div class="card order-summery card-md">
+                        <div class="card-body">
+                            <h5 class="fw-500 mb-20">Order Summary</h5>
+                            <div class="total">
+                                <div class="subtotalTotal">
+                                    Subtotal:
+                                    <span>GHS 0.00</span>
+                                </div>
+                                <div class="taxes">
+                                    Value Added Tax (12.5%):
+                                    <span>GHS 0.00</span>
+                                </div>
+                            </div>
+
+                            <div class="total-money d-flex justify-content-between">
+                                <h6>Total :</h6>
+                                <h5>GHS 0.00</h5>
+                            </div>
+                            <a href="#" class="checkout btn-secondary content-center w-100 btn-lg mt-20" data-bs-toggle="modal" data-bs-target="#checkOut"> proceed to
+                                checkout<i class="las la-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+              </div>
         </div>
 
     </div>
@@ -451,6 +480,30 @@
 
 <!--Start In-Page Modals-->
 
+<!-- Start Checkout Transaction Modal -->
+<div class="modal fade" id="checkOut" tabindex="-1" role="dialog" aria-labelledby="updateProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateProductModalLabel">Complete Transaction</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" id="completeTransaction" class="btn btn-primary btn-sm">Finish</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancel</button>
+                </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Checkout Transaction -->
+
 <!--End In-Page Modals-->
 
 
@@ -458,7 +511,7 @@
 <script>
     $(document).ready(function() {
         // Initialize counter
-        var counter = 1;
+        let counter = 1;
 
         // Fetch products from the server and populate the product table
         fetchProducts(counter);
@@ -493,8 +546,34 @@
             });
     }
 
+    // Search Function to Filter Product(s) on the Products Table
+    // Function to filter products based on search keyword
+    function filterProducts() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("posProductTableBody");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1]; // Change index if product name is in different column
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    // Add event listener to the search input field
+    document.getElementById("searchInput").addEventListener("keyup", filterProducts);
+
+
     // Script to add to Cart, Delete Item and Clear Cart
-        // Array to store cart items
+    // Array to store cart items
     let cartItems = [];
 
     // Event listener for Add button in product table
@@ -526,6 +605,7 @@
 
     // Function to add cart item to the table
     function addCartItem(item) {
+
         let $cartBody = $('#cart-item');
         let total = item.price * item.quantity;
         let row = `
@@ -533,15 +613,18 @@
                 <td>${item.productName}</td>
                 <td>${item.price.toFixed(2)}</td>
                 <td>
-                    <button class="qty-minus" data-id="${item.productId}">-</button>
-                    <input type="number" value="${item.quantity}" min="1" class="qty">
-                    <button class="qty-plus" data-id="${item.productId}">+</button>
+                    <div class="d-flex">
+                        <input type="button" class="qty-minus bttn bttn-left wh-36" data-id="${item.productId}" value="-">
+                        <input type="number" value="${item.quantity}" class="qty qh-36 input">
+                        <input type="button" class="qty-plus bttn bttn-left wh-36" data-id="${item.productId}" value="+">
+                    </div>
                 </td>
-                <td class="total">${total.toFixed(2)}</td>
-                <td><button class="delete" data-id="${item.productId}">Delete</button></td>
+                <td class="total subtotal">${total.toFixed(2)}</td>
+                <td><button class="delete action-btn" data-id="${item.productId}">Delete</button></td>
             </tr>`;
         $cartBody.append(row);
         updateTotal();
+
     }
 
     // Event listener for Clear button
@@ -560,15 +643,20 @@
     });
 
     // Event listener for Quantity +/- buttons
-    $(document).on('click', '.qty-minus, .qty-plus', function() {
+    $(document).on('click', '.qty-minus, .qty-plus', function(event) {
+        // prevent default bindings
+        event.preventDefault();
+
         let productId = $(this).data('id');
         let $qtyInput = $(this).siblings('.qty');
         let quantity = parseInt($qtyInput.val());
+
         if ($(this).hasClass('qty-minus')) {
             quantity = Math.max(quantity - 1, 1);
         } else {
-            quantity++;
+            quantity = Math.min(quantity + 1, item.quantityInStock); // Limit quantity by quantityInStock
         }
+
         $qtyInput.val(quantity);
         let item = cartItems.find(item => item.productId === productId);
         if (item) {
@@ -586,41 +674,151 @@
         updateTotal();
     }
 
-    // Function to update total price in the table
-    function updateTotal() {
-        let total = 0;
-        cartItems.forEach(item => {
-            total += item.price * item.quantity;
-        });
-        $('#cart tfoot').html(`<tr><td colspan="4">Total: Ghs ${total.toFixed(2)}</td></tr>`);
-    }
 
 
-    // Search Function to Filter Product(s) on the Products Table
-    // Function to filter products based on search keyword
-function filterProducts() {
-    var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("searchInput");
-    filter = input.value.toUpperCase();
-    table = document.getElementById("posProductTableBody");
-    tr = table.getElementsByTagName("tr");
+// ---------------------------------
+    // Function to update the order summary based on cart items
+function updateTotal() {
+    let subtotal = 0;
+    cartItems.forEach(item => {
+        subtotal += item.price * item.quantity;
+    });
 
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[1]; // Change index if product name is in different column
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
+    // Calculate taxes (assuming fixed tax rate for now)
+    let taxRate = 0.125; // 12.5%
+    let taxes = subtotal * taxRate;
+
+    // Calculate total
+    let total = subtotal + taxes;
+
+    // Update the HTML elements with the calculated values
+    $('.subtotalTotal span').text(`GHS ${subtotal.toFixed(2)}`);
+    $('.taxes span').text(`GHS ${taxes.toFixed(2)}`);
+    $('.total-money h5').text(`GHS ${total.toFixed(2)}`);
 }
 
-// Add event listener to the search input field
-document.getElementById("searchInput").addEventListener("keyup", filterProducts);
+// Call the updateOrderSummary function whenever the cart items are updated
+updateTotal();
+// --------------------------------
 
+
+
+    // Start Script for Proceed to Checkout
+
+    // Event listener for the "proceed to checkout" button
+    $('.checkout').click(function() {
+        // Open the checkout modal
+        $('#checkOut').modal('show');
+
+        // Populate the modal with items and summary
+        populateCheckoutModal();
+    });
+
+    // Function to populate the checkout modal with items and summary
+function populateCheckoutModal() {
+    // Clear existing content in the modal body
+    $('.modal-body').empty();
+
+    // Append items to the modal body
+    cartItems.forEach(function(item) {
+        let itemHtml = `
+            <div>${item.productName} - Quantity: ${item.quantity} - Price: GHS ${item.price.toFixed(2)}</div>`;
+        $('.modal-body').append(itemHtml);
+    });
+
+    // Append summary to the modal body
+    let subtotal = calculateSubtotal();
+    //let discount = calculateDiscount();
+    let taxes = calculateTaxes();
+    let total = subtotal - discount + taxes;
+    let summaryHtml = `
+        <div>Subtotal: GHS ${subtotal.toFixed(2)}</div>
+        <div>Discount: GHS ${discount.toFixed(2)}</div>
+        <div>Taxes: GHS ${taxes.toFixed(2)}</div>
+        <div>Total: GHS ${total.toFixed(2)}</div>`;
+    $('.modal-body').append(summaryHtml);
+}
+
+    // Function to populate the checkout modal with items and summary
+function populateCheckoutModal() {
+    // Clear existing content in the modal body
+    $('.modal-body').empty();
+
+    // Append items to the modal body
+    cartItems.forEach(function(item) {
+        let itemHtml = `
+            <div>${item.productName} - Quantity: ${item.quantity} - Price: GHS ${item.price.toFixed(2)}</div>`;
+        $('.modal-body').append(itemHtml);
+    });
+
+    // Append summary to the modal body
+    //let subtotal = calculateSubtotal();
+    //let discount = calculateDiscount();
+    let taxes = calculateTaxes();
+    //let total = subtotal - discount + taxes;
+    let summaryHtml = `
+
+    `;
+    $('.modal-body').append(summaryHtml);
+}
+
+    // Function to calculate taxes based on subtotal
+function calculateTaxes(subtotal) {
+    // Implement your taxes calculation logic here
+    let taxRate = 0.125;
+    let taxes = taxRate * subtotal;
+    return taxes;
+}
+
+
+
+// Start Submit Request to Backend
+
+// Event listener for the "finish" button in the checkout modal
+$('#completeTransaction').click(function() {
+    // Submit the transaction to the backend
+    submitTransaction();
+    // Close the modal
+    $('#checkOut').modal('hide');
+
+});
+
+function submitTransaction() {
+    // Prepare the data to be sent in the request body
+    let items = cartItems.map(item => ({
+        id: item.productId,
+        quantity: item.quantity
+    }));
+
+    // Make an AJAX POST request to the backend endpoint
+    $.ajax({
+        url: "/pos/posTransaction",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(items),
+        success: function(response) {
+            // Handle successful response from the backend
+            console.log("Transaction successful:", response);
+            // Clear the cart and update the UI as needed
+            $('#cart-item').empty();
+            cartItems = [];
+            updateTotal();
+
+             // Fetch updated products after successful transaction
+            fetchProducts(1);
+        },
+        error: function(xhr, status, error) {
+            // Handle errors from the backend
+            console.error("Error occurred during transaction:", error);
+            // Optionally, display an error message to the user
+        }
+    });
+
+}
+
+// End Submit Request to Backend
+
+    // End Script for Proceed to Checkout
 </script>
 <!--End In-Page Scripts-->
 

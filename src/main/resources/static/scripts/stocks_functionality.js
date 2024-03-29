@@ -36,6 +36,34 @@ function fetchAndDisplayProducts() {
     });
 // End Fetch Products into table when page load
 
+// Function to filter the table based on the product name or category ID
+    function filterTable() {
+        // Get the input value
+        var filterValue = document.getElementById("filterInput").value.toUpperCase();
+
+        // Get the table rows
+        var rows = document.getElementById("productTableBody").getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those that do not match the filter
+        for (var i = 0; i < rows.length; i++) {
+            var productName = rows[i].getElementsByTagName("td")[1]; // Get the second column (product name)
+            var categoryId = rows[i].getElementsByTagName("td")[6]; // Get the seventh column (category ID)
+
+            if (productName || categoryId) {
+                var productNameText = productName.textContent || productName.innerText;
+                var categoryIdText = categoryId.textContent || categoryId.innerText;
+
+                if (productNameText.toUpperCase().indexOf(filterValue) > -1 || categoryIdText.toUpperCase().indexOf(filterValue) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    }
+// End Filter Search
+
+
 // Start Add Single Product Script
 $("#addSingleProductForm").submit(function(e) {
     e.preventDefault();
@@ -72,6 +100,7 @@ $(document).on('click', '.update', function(e) {
 
         // Populate the modal form fields with the fetched product data
         $("#updateProductModal #updateNameOfProduct").val(product.name);
+        $("#updateProductModal #updateProductId").val(product.id);
         $("#updateProductModal #updateCostOfProduct").val(product.costPrice);
         $("#updateProductModal #updateSellingPriceOfProduct").val(product.sellingPrice);
         $("#updateProductModal #updateQtyInStock").val(product.quantityInStock);
@@ -99,9 +128,9 @@ $("#updateProductForm").submit(function(e) {
 
     // Serialize form data
     let formData = $(this).serialize();
-
+    console.log(productId);
     // Submit AJAX request to update product
-    $.post("/updateProduct/" + productId, formData)
+    /*$.post("/updateProduct/" + productId, formData)
         .done(function(response) {
             console.log("Product updated successfully:", response);
             // Refresh the product table after updating the product
@@ -112,6 +141,30 @@ $("#updateProductForm").submit(function(e) {
         .fail(function(jqXHR, textStatus, errorThrown) {
             console.error("Error updating product:", errorThrown);
 
+        });*/
+
+    // Convert formData object to JSON format
+    let jsonData = {};
+    formData.split('&').forEach(function(keyValue) {
+        let [key, value] = keyValue.split('=');
+        jsonData[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+    });
+
+    $.ajax({
+            url: "/updateProduct/" + productId,
+            type: "PUT", // Change POST to PUT
+            data: JSON.stringify(jsonData),
+            contentType: 'application/json', // Set content type
+            success: function(response) {
+                console.log("Product updated successfully:", response);
+                // Refresh the product table after updating the product
+                fetchAndDisplayProducts();
+                // Close the modal
+                $('#updateProductModal').modal('hide');
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error updating product:", errorThrown);
+            }
         });
 });
 // End Update Product Script
@@ -160,6 +213,8 @@ $("#updateProductForm").submit(function(e) {
                 success: function (response) {
                     // Handle success response
                     console.log(fetchAndDisplayProducts());
+                    console.log(formData);
+                    console.log(response);
 
                     // After adding, fetch and display products
                     fetchAndDisplayProducts();
@@ -182,6 +237,33 @@ $("#updateProductForm").submit(function(e) {
         });
     });
 // End Add CSV/Batch Script
+
+// Start Delete Product Script
+$(document).on('click', '.remove', function(e) {
+    e.preventDefault();
+
+    // Get the product ID from the table row
+    let ProductId = $(this).closest('tr').data('product-id');
+
+    // Send AJAX request to delete the product
+    $.ajax({
+        url: "products/" + ProductId,
+        type: "DELETE",
+        success: function(response) {
+            console.log("Product deleted successfully:", response);
+            // Remove the corresponding row from the table
+            $(this).closest('tr').remove();
+
+           // Refresh the product table after updating the product
+           fetchAndDisplayProducts();
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.error("Error deleting product:", errorThrown);
+        }
+    });
+});
+// End Delete Product Script
+
 
 
 //Point of Sale Page

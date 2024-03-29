@@ -29,14 +29,16 @@ public class ProductService {
     }
 
 
-    public Product update(String id,  Product product) {
-        product = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found with ID: " + id));
+    public Product update(String id,  Product updatedProduct) {
+        Product product = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found with ID: " + id));
 
-        product.setName(product.getName());
-        product.setCostPrice(product.getCostPrice());
-        product.setSellingPrice(product.getSellingPrice());
-        product.setQuantityInStock(product.getQuantityInStock());
-        product.setExpiryDate(product.getExpiryDate());
+        product.setName(updatedProduct.getName());
+        product.setCostPrice(updatedProduct.getCostPrice());
+        product.setSellingPrice(updatedProduct.getSellingPrice());
+        product.setQuantityInStock(updatedProduct.getQuantityInStock());
+        product.setExpiryDate(updatedProduct.getExpiryDate());
+
+        // Save the updated product to the database
         return productRepository.save(product);
 
     }

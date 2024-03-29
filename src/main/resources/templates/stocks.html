@@ -172,20 +172,20 @@
                             <span class="menu-text">Stock Management</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="reports.html" class="">
-                            <span class="nav-icon uil uil-arrow-growth"></span>
-                            <span class="menu-text">Financial Reports</span>
-                        </a>
-                    </li>
-                    <li class="">
+<!--                    <li>-->
+<!--                        <a href="reports.html" class="">-->
+<!--                            <span class="nav-icon uil uil-arrow-growth"></span>-->
+<!--                            <span class="menu-text">Financial Reports</span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+                    <!--<li class="">
                         <a href="settings.html">
                             <span class="nav-icon uil "></span>
                             <span class="menu-text">Settings</span>
                         </a>
-                    </li>
+                    </li>-->
                     <li class="">
-                        <a href="#">
+                        <a th:href="*{login}">
                             <span class="nav-icon uil uil-sign-out-alt"></span>
                             <span class="menu-text">Sign Out</span>
                         </a>
@@ -217,11 +217,11 @@
             </div>
             <div class="row">
                 <!------ Data Insights ------->
-                <div class="col-xxl-12">
+                <!--<div class="col-xxl-12">
                     <div class="row">
                         <div class="col-xxl-3 col-sm-3 mb-25">
-                            <!-- Card 1  -->
-                            <div class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between">
+                            &lt;!&ndash; Card 1  &ndash;&gt;
+                            <div class="ap-po-details ap-po-details&#45;&#45;2 p-25 radius-xl d-flex justify-content-between">
                                 <div class="overview-content w-100">
                                     <div class="ap-po-details-content d-flex flex-wrap justify-content-between">
                                         <div class="ap-po-details__titlebar">
@@ -238,12 +238,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Card 1 End  -->
+                            &lt;!&ndash; Card 1 End  &ndash;&gt;
                         </div>
                         <div class="col-xxl-3 col-sm-3 mb-25">
-                            <!-- Card 2 -->
+                            &lt;!&ndash; Card 2 &ndash;&gt;
                             <div
-                                    class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between"
+                                    class="ap-po-details ap-po-details&#45;&#45;2 p-25 radius-xl d-flex justify-content-between"
                             >
                                 <div class="overview-content w-100">
                                     <div
@@ -263,12 +263,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Card 2 End  -->
+                            &lt;!&ndash; Card 2 End  &ndash;&gt;
                         </div>
                         <div class="col-xxl-3 col-sm-3 mb-25">
-                            <!-- Card 3 -->
+                            &lt;!&ndash; Card 3 &ndash;&gt;
                             <div
-                                    class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between"
+                                    class="ap-po-details ap-po-details&#45;&#45;2 p-25 radius-xl d-flex justify-content-between"
                             >
                                 <div class="overview-content w-100">
                                     <div
@@ -289,12 +289,12 @@
 
                                 </div>
                             </div>
-                            <!-- Card 3 End  -->
+                            &lt;!&ndash; Card 3 End  &ndash;&gt;
                         </div>
                         <div class="col-xxl-3 col-sm-3 mb-25">
-                            <!-- Card 4  -->
+                            &lt;!&ndash; Card 4  &ndash;&gt;
                             <div
-                                    class="ap-po-details ap-po-details--2 p-25 radius-xl d-flex justify-content-between"
+                                    class="ap-po-details ap-po-details&#45;&#45;2 p-25 radius-xl d-flex justify-content-between"
                             >
                                 <div class="overview-content w-100">
                                     <div
@@ -315,10 +315,10 @@
 
                                 </div>
                             </div>
-                            <!-- Card 4 End  -->
+                            &lt;!&ndash; Card 4 End  &ndash;&gt;
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!------- End of Data Insights ------->
 
                 <!------- Action Panel -------->
@@ -373,7 +373,7 @@
                                             >Upload CSV
                                         </button>
                                     </div>
-                                    <div class="col-sm-3">
+                                   <!-- <div class="col-sm-3">
                                         <button
                                                 class="btn btn-default btn-squared color-light btn-outline-light px-20"
                                         >
@@ -397,7 +397,7 @@
                                                 </svg>
                                             Add Multiple Product
                                         </button>
-                                    </div>
+                                    </div>-->
                                 </div>
                             </div>
                         </div>
@@ -425,10 +425,10 @@
                                 </div>
                             </div>
                             <div class="action-btn">
-                                <a href="#" class="btn btn-primary">
+                                <!--<a href="#" class="btn btn-primary">
                                     Export
                                     <i class="las la-angle-down"></i>
-                                </a>
+                                </a>-->
                             </div>
                         </div>
 
@@ -461,9 +461,11 @@
                                         </svg>
                                         <input
                                                 class="form-control border-0 box-shadow-none"
-                                                type="search"
+                                                type="text"
                                                 placeholder="Search"
                                                 aria-label="Search"
+                                                id="filterInput"
+                                                onkeyup="filterTable()"
                                         />
                                     </form>
                                 </div>
@@ -786,7 +788,7 @@
             </div>
             <form id="updateProductForm" action="/products/" method="post">
                 <div class="modal-body">
-<!--                    <input type="hidden" id="updateProductId" name="productId" value="">-->
+                    <input type="hidden" id="updateProductId" name="id">
                     <div class="form-group">
                         <label for="updateNameOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Name of Product</label>
                         <input type="text" class="form-control" id="updateNameOfProduct" name="name" placeholder="Enter Name of Product/Medicine">

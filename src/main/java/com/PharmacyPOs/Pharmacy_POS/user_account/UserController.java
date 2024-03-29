@@ -25,13 +25,9 @@ public class UserController {
     @Autowired
     private final UserService userService;
 
-//    private final PwdConfiguration pwdConfiguration;
-
     public UserController(UserService userService) {
-//        this.pwdConfiguration = pwdConfiguration;
         this.userService = userService;
     }
-
 
     @GetMapping("/")
     public String Home(){
@@ -49,14 +45,14 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/dash")
+    @GetMapping("/dash.html")
     public String Dashboard(User user){
-        return "dash";
+        return "dash.html";
     }
 
     @GetMapping("/pos.html")
     public String POS(User user){
-        return "pos";
+        return "pos.html";
     }
 
     @GetMapping("/stocks.html")
@@ -67,7 +63,14 @@ public class UserController {
 
     @GetMapping("/reports.html")
     public String FinancialReport(User user){
-        return "reports";
+        return "reports.html";
+    }
+
+    // Register User
+    @GetMapping("/register")
+    public String RegisterUser(Model model){
+        model.addAttribute("user", new User());
+        return "register.html";
     }
 
     @GetMapping("/settings.html")
@@ -84,7 +87,7 @@ public class UserController {
 //        String hashPassword = passwordEncoder(password);
 
         User registeredUser = userService.registerUser(email, password, firstname, surname, phoneNumber, location, pharmacyName, pharmacyType);
-        return new RedirectView("/dash");
+        return new RedirectView("/dash.html");
 //        return null;
 
     }
