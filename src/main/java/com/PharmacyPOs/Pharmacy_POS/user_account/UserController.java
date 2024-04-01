@@ -39,10 +39,10 @@ public class UserController {
         return "signup";
     }
 
-    @GetMapping("/login")
+    @GetMapping("/login.html")
     public String Userlogin(Model model){
         model.addAttribute("user", new User());
-        return "login";
+        return "login.html";
     }
 
     @GetMapping("/dash.html")
@@ -64,10 +64,17 @@ public class UserController {
     @GetMapping("/reports.html")
     public String FinancialReport(User user){
         return "reports.html";
+    } @GetMapping("/incorrectpassword.html")
+    public String IncorrectPass(Model model){
+        return "incorrectpassword.html";
+    }
+    @GetMapping("/usernotfound.html")
+    public String UsernotFound(Model model){
+        return "usernotfound.html";
     }
 
     // Register User
-    @GetMapping("/register")
+    @GetMapping("/register.html")
     public String RegisterUser(Model model){
         model.addAttribute("user", new User());
         return "register.html";
@@ -84,9 +91,9 @@ public class UserController {
                                      @RequestParam("phoneNumber") String phoneNumber, @RequestParam("pharmacyName") String pharmacyName,
                                      @RequestParam("location") String location, @RequestParam("pharmacyType") String pharmacyType){
 
-//        String hashPassword = passwordEncoder(password);
+        String hashPassword = passwordEncoder(password);
 
-        User registeredUser = userService.registerUser(email, password, firstname, surname, phoneNumber, location, pharmacyName, pharmacyType);
+        User registeredUser = userService.registerUser(email, hashPassword, firstname, surname, phoneNumber, location, pharmacyName, pharmacyType);
         return new RedirectView("/dash.html");
 //        return null;
 
@@ -99,22 +106,24 @@ public class UserController {
                                    RedirectAttributes redirectAttributes){
 
         User registeredUser = userService.findUserByEmail(email);
+        System.out.println(registeredUser);
+
         if (registeredUser == null){
             // user not found, return a not found response
-           return new RedirectView("/register");
+           return new RedirectView("/usernotfound.html");
        }
 
-//       boolean checkPassword = passwordDecoder(password, registeredUser.getPassword());
+       boolean checkPassword = passwordDecoder(password, registeredUser.getPassword());
 
-        if(password.equals(registeredUser.getPassword())){
+        if(checkPassword){
             // Add the logged-in user infomation to a flash attribute
             redirectAttributes.addFlashAttribute("user", registeredUser);
 
             // Redirect to the dashboard upon successful login
-           return new RedirectView("/dash");
+           return new RedirectView("/dash.html");
         } else{
             // Incorrect password, return unauthorized response
-            return new RedirectView("/login");
+            return new RedirectView("/incorrectpassword.html");
         }
 
         /*if(!checkPassword){
