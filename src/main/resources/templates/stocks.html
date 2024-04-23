@@ -511,7 +511,7 @@
                                             <div class="d-flex">
                                                 <div class="userDatatable-inline-title">
                                                     <a href="#" class="text-dark fw-500">
-                                                        <h6 th:insert="${product.name}">Paracetamol</h6>
+                                                        <h6 th:insert="${product.productName}">Paracetamol</h6>
                                                     </a>
                                                 </div>
                                             </div>
@@ -684,8 +684,8 @@
                     <div class="col-12">
                         <div class="col-6">
                             <div class="form-group">
-                                <label for="nameOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Name of Product</label>
-                                <input type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="nameOfProduct" th:field="*{name}" placeholder="Enter Name of Product/Medicine">
+                                <label for="productName" class="color-dark fs-14 fw-500 align-center mb-10">Name of Product</label>
+                                <input type="text" class="form-control ih-medium ip-gray radius-xs b-light px-15" id="productName" th:field="*{productName}" placeholder="Enter Name of Product/Medicine">
                             </div>
                         </div>
                         <div class="col-6">
@@ -791,7 +791,7 @@
                     <input type="hidden" id="updateProductId" name="id">
                     <div class="form-group">
                         <label for="updateNameOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Name of Product</label>
-                        <input type="text" class="form-control" id="updateNameOfProduct" name="name" placeholder="Enter Name of Product/Medicine">
+                        <input type="text" class="form-control" id="updateNameOfProduct" name="productName" placeholder="Enter Name of Product/Medicine">
                     </div>
                     <div class="form-group">
                         <label for="updateCostOfProduct" class="color-dark fs-14 fw-500 align-center mb-10">Cost Price of Product</label>

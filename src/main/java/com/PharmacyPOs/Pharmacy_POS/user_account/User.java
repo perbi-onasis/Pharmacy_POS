@@ -8,6 +8,8 @@ import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Set;
+
 
 @Document(collection = "users")
 public class User {
@@ -48,6 +50,9 @@ public class User {
 
     @NotNull(message = "Pharmacy type is required")
     private String pharmacyType;
+
+    private Set<Role> roles;
+
 
     public User(){
 
@@ -134,5 +139,13 @@ public class User {
 
     public String setPharmacyType(String pharmacyType) {
        return this.pharmacyType = pharmacyType;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.view.RedirectView;
 //import org.springframework.security.crypto.password.PasswordEncoder;
 //import com.PharmacyPOs.Pharmacy_POS.user_account.PwdConfiguration;
 //import com.PharmacyPOs.Pharmacy_POS.user_account.UserRepository;
@@ -27,25 +28,15 @@ public class UserService {
 
 
 
-//    private PasswordEncoder passwordEncoder;
-
-/*    public class PwdSecurityConfig {
-        @Bean
-        public PasswordEncoder passwordEncoder(){
-            return new BCryptPasswordEncoder();
-        }
-    }
-*/
-
 //     Checks if a user is not already registered then it creates the user in the db
-    public User registerUser(String firstname, String surname, String phoneNumber, String email, String pharmacyName, String password, String location, String pharmacyType) {
+    public User registerUser(String email, String password, String firstname, String surname, String phoneNumber, String pharmacyName,String location, String pharmacyType) {
         User existingUser = userRepository.findByEmail(email);
         if (existingUser != null) {
 //            throw new UserAlreadyExistException("A user with the email address " + user.getEmail() + " already exists.");
         }
 //        String hashPassword = passwordEncoder(password);
 
-        User user = new User(firstname, surname, phoneNumber, email, pharmacyName, password, location, pharmacyType);
+        User user = new User(email, password, firstname, surname, phoneNumber, pharmacyName, location, pharmacyType);
         return userRepository.save(user);
 
     }
@@ -57,9 +48,7 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
-/**
- * @param  plainPassword
- * */
+
     public  String passwordEncoder (String plainPassword){
         return BCrypt.hashpw(plainPassword, BCrypt.gensalt(12));
     }

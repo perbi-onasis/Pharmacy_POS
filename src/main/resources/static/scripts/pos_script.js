@@ -18,12 +18,12 @@ function fetchProducts(counter) {
                 var row = `
                 <tr>
                     <td>${counter++}</td>
-                    <td>${product.name}</td>
+                    <td>${product.productName}</td>
                     <td>${product.quantityInStock}</td>
                     <td>${product.sellingPrice}</td>
                     <td>${product.categoryId}</td>
                     <td>
-                        <a href="#" class="edit" onclick="addToCart('${product.id}', '${product.name}', ${product.sellingPrice})">Add</a>
+                        <a href="#" class="edit" onclick="addToCart('${product.id}', '${product.productName}', ${product.sellingPrice})">Add</a>
                     </td>
                     <!-- Hidden cell for product ID -->
                     <td style="display: none;">${product.id}</td>
@@ -103,6 +103,7 @@ function addCartItem(item) {
 
     let $cartBody = $('#cart-item');
     let total = item.price * item.quantity;
+    item.totalAmount = parseFloat(total.toFixed(2) * item.quantity);
     let row = `
     <tr data-id="${item.productId}">
         <td>${item.productName}</td>
@@ -122,6 +123,17 @@ function addCartItem(item) {
 
 }
 
+
+// Function to update product quantities in the UI after transaction
+function updateProductQuantities() {
+    cartItems.forEach(function(item) {
+        let productId = item.productId;
+        let newQuantity = item.quantityInStock - item.quantity; // Subtract sold quantity
+        $(`#posProductTableBody tr[data-id="${productId}"] td:eq(2)`).text(newQuantity);
+    });
+}
+
+
 // Event listener for Delete button
 $(document).on('click', '.delete', function() {
     let productId = $(this).data('id');
@@ -130,44 +142,22 @@ $(document).on('click', '.delete', function() {
     updateTotal();
 });
 
-// Event listener for Quantity +/- buttons
+// Event listener for the "Clear" button
+    $('#clearCartBtn').click(function() {
+        // Clear the cartItems array and update the UI
+        cartItems = [];
+        $('#cart-item').empty(); // Empty the cart item table
+        updateTotal(); // Update the total in the UI
+    });
+
 /*
-$(document).on('click', '.qty-minus, .qty-plus', function(event) {
-    event.preventDefault();
-
-    let productId = $(this).data('id');
-    let $qtyInput = $(this).siblings('.qty');
-    let quantity = parseInt($qtyInput.val());
-    let item = cartItems.find(item => item.productId === productId);
-
-    if ($(this).hasClass('qty-minus')) {
-        quantity = Math.max(quantity - 1, 0); // Adjusted to remove item if quantity is 0
-    } else {
-        quantity = Math.min(quantity + 1, item.quantityInStock);
-    }
-
-    // Update quantity input field
-    $qtyInput.val(quantity);
-
-    // Update cart item
-    let updatedItem = cartItems.find(item => item.productId === productId);
-    if (updatedItem) {
-        updatedItem.quantity = quantity;
-        if (quantity === 0) {
-            removeCartItem(productId); // Remove item if quantity is 0
-        } else {
-            updateCartItem(updatedItem);
-        }
-    }
-});
-*/
-
 // Unbind existing event handler to prevent multiple bindings
 $(document).off('click', '.qty-minus, .qty-plus');
 
 // Event listener for Quantity +/- buttons
 $(document).on('click', '.qty-minus, .qty-plus', function(event) {
     event.preventDefault();
+    event.stopPropagation(); // To prevent event bubbling
 
     // Retrieve product ID, quantity input field, and current quantity
     let productId = $(this).data('id');
@@ -228,7 +218,81 @@ function updateCartItemQuantity(productId, quantity) {
         console.error("Invalid quantity value:", quantity);
     }
 }
+*/
 
+
+// new code to test quantity updation
+$(document).ready(function() {
+    // Initialize counter
+    let counter = 1;
+
+    // Fetch products from the server and populate the product table
+    fetchProducts(counter);
+
+    // Event listener for Quantity +/- buttons using event delegation
+    $(document).on('click', '.product-cart__quantity .qty-minus, .product-cart__quantity .qty-plus', function(event) {
+        event.preventDefault();
+        event.stopPropagation(); // To prevent event bubbling
+
+        // Retrieve product ID, quantity input field, and current quantity
+        let $qtyInput = $(this).siblings('.qty');
+        let productId = $qtyInput.closest('tr').data('id');
+        let quantity = parseInt($qtyInput.val());
+
+        // Find the corresponding item in the cartItems array
+        let item = cartItems.find(item => item.productId === productId);
+
+        // Update quantity based on button clicked
+        if ($(this).hasClass('qty-minus')) {
+            // Decrease quantity by 1, but not below 0
+            quantity = Math.max(quantity - 0, 0);
+        } else if ($(this).hasClass('qty-plus')) {
+            // Increase quantity by 1, but not beyond available stock
+            if (quantity + 0 > item.quantityInStock) {
+                // Alert the user and revert the quantity back to the maximum allowed value
+                alert(`Maximum available quantity for ${item.productName} is ${item.quantityInStock}`);
+                return; // Exit the function without updating quantity or cart item
+            } else {
+                quantity = quantity + 0;
+            }
+        }
+
+        // Update quantity input field
+        $qtyInput.val(quantity);
+
+        // Update cart item
+        updateCartItemQuantity(productId, quantity);
+
+        // Remove item from cart if quantity is 0
+        if (quantity === 0) {
+            removeCartItem(productId);
+        }
+
+        if (quantity + 1 > item.quantityInStock) {
+            // Alert the user and revert the quantity back to the maximum allowed value
+            alert(`Maximum available quantity for ${item.productName} is ${item.quantityInStock}`);
+            quantity = item.quantityInStock;
+        }
+    });
+});
+
+// Function to update quantity of a cart item
+function updateCartItemQuantity(productId, quantity) {
+    // Find the cart item and update its quantity
+    let updatedItem = cartItems.find(item => item.productId === productId);
+    updatedItem.quantity = quantity;
+
+    // Update the quantity input field and total in the table
+    let $qtyInput = $(`#cart-item tr[data-id="${productId}"] .qty`);
+    let total = updatedItem.price * updatedItem.quantity;
+    $qtyInput.val(updatedItem.quantity);
+    $(`#cart-item tr[data-id="${productId}"] .total`).text(total.toFixed(2));
+
+    // Update the order summary
+    updateTotal();
+}
+
+//test quantity updation end here
 
 
 
@@ -344,23 +408,33 @@ function calculateTaxes(subtotal) {
 
 // Event listener for the "finish" button in the checkout modal
 $('#completeTransaction').click(function() {
-    // Submit the transaction to the backend
+
+    // If all quantities are within stock limits, proceed with transaction
     submitTransaction();
     // Close the modal
     $('#checkOut').modal('hide');
-
 });
+
+// Define getProductById function to retrieve product details by ID
+function getProductById(productId) {
+    // Implement logic to fetch product details from the server or local data
+    return products.find(product => product.id === productId);
+}
+
 
 function submitTransaction() {
     // Prepare the data to be sent in the request body
     let items = cartItems.map(item => ({
         id: item.productId,
-        quantity: item.quantity
+        productName: item.productName,
+        quantity: item.quantity,
+        sellingPrice: item.price,
+        totalAmount: item.totalAmount
     }));
 
     // Make an AJAX POST request to the backend endpoint
     $.ajax({
-        url: "/pos/posTransaction",
+        url: "/posTransaction",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(items),
@@ -374,17 +448,122 @@ function submitTransaction() {
 
             // Fetch updated products after successful transaction
             fetchProducts(1);
+
+            // Update product quantities in the UI after transaction
+            updateProductQuantities();
         },
         error: function(xhr, status, error) {
             // Handle errors from the backend
-            console.error("Error occurred during transaction:", error);
-            // Optionally, display an error message to the user
+                        console.error("Error occurred during transaction:", error);
+                        // Check if the error is due to insufficient stock
+                        if (xhr.status === 400) {
+                            // Alert the user with the error message from the server
+                            alert(xhr.responseText);
+                        } else {
+                            // Display a generic error message to the user
+                            alert("An error occurred during the transaction. Please try again later.");
+                        }
         }
     });
 
 }
 
 // End Submit Request to Backend
+
+
+
+//Start Here Transactions Script
+
+
+
+// Function to fetch and display transactions
+$(document).ready(function() {
+    // Attach click event listener to the button
+    $('#posTransactions-tab').click(function() {
+        fetchTransactions();
+    });
+
+    // Initialize counter
+    let counter = 1;
+
+    // Function to fetch and display transactions
+    function fetchTransactions() {
+        $.ajax({
+            url: '/transactions', // Update with your actual backend endpoint URL
+            type: 'GET',
+            success: function(response) {
+                // Clear previous table rows
+                $('#transactionsTableBody').empty();
+
+                // Iterate over each transaction and populate the table
+                $.each(response, function(index, transaction) {
+                    index = index+1;
+                    // Create a row for the transaction
+                    let row = '<tr class="' + (index % 2 === 0 ? 'even' : 'odd') + '">';
+                    row += '<td>' + index++ + '</td>'; // Increment counter for each row
+                    row += '<td>' + transaction.id + '</td>';
+                    row += '<td>' + getProductNames(transaction.items) + '</td>'; // Populate with product names
+                    row += '<td>' + getQuantities(transaction.items) + '</td>'; // Populate with quantities
+                    row += '<td>' + getPrices(transaction.items) + '</td>'; // Populate with prices
+                    row += '<td>' + transaction.date + '</td>';
+                    row += '<td>' + calculateSubTotal(transaction.items) + '</td>'; // Populate with subtotal
+                    row += '</tr>';
+
+                    // Append row to the table
+                    $('#transactionsTableBody').append(row);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error('Error fetching transactions:', error);
+                // Handle error appropriately, e.g., show error message to the user
+            }
+        });
+    }
+
+    // Function to get product names from items array
+    function getProductNames(items) {
+        var productNames = '';
+        $.each(items, function(index, item) {
+            productNames += item.productName + '<br>';
+        });
+        return productNames;
+    }
+
+    // Function to get quantities from items array
+    function getQuantities(items) {
+        var quantities = '';
+        $.each(items, function(index, item) {
+            quantities += item.quantity + '<br>';
+        });
+        return quantities;
+    }
+
+    // Function to get prices from items array
+    function getPrices(items) {
+        var prices = '';
+        $.each(items, function(index, item) {
+            prices += item.sellingPrice + '<br>';
+        });
+        return prices;
+    }
+
+    // Function to calculate subtotal
+    function calculateSubTotal(items) {
+        var total = 0;
+        $.each(items, function(index, item) {
+            total += item.quantity * item.sellingPrice;
+        });
+        return total;
+    }
+
+    // Call fetchTransactions() when the page loads
+    fetchTransactions();
+});
+
+
+
+
+//End Here Transactions Script
 
 // End Script for Proceed to Checkout
 

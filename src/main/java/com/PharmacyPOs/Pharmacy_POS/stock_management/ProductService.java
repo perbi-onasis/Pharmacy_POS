@@ -29,10 +29,14 @@ public class ProductService {
     }
 
 
+    public boolean doesProductExist(String productName) {
+        return productRepository.existsByName(productName);
+    }
+
     public Product update(String id,  Product updatedProduct) {
         Product product = productRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Product not found with ID: " + id));
 
-        product.setName(updatedProduct.getName());
+        product.setproductName(updatedProduct.getproductName());
         product.setCostPrice(updatedProduct.getCostPrice());
         product.setSellingPrice(updatedProduct.getSellingPrice());
         product.setQuantityInStock(updatedProduct.getQuantityInStock());
@@ -52,12 +56,18 @@ public class ProductService {
 
     }
 
-    @Autowired
+
     public List<Product> getAllProducts() {
         return (List<Product>) productRepository.findAll();
     }
 
-
+    public String findIdByName(String productName) {
+            Product product = productRepository.findByProductName(productName);
+            if (product != null) {
+                return product.getId();
+            }
+            return null;
+    }
     public boolean deleteById(String productId){
         try{
             productRepository.deleteById(productId);
@@ -66,5 +76,9 @@ public class ProductService {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public boolean existsByName(String productName) {
+        return productRepository.existsByName(productName);
     }
 }

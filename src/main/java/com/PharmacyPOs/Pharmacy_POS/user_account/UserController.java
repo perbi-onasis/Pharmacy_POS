@@ -87,18 +87,28 @@ public class UserController {
 
     //  Register
     @PostMapping("/register")
+    public RedirectView registerUser(@ModelAttribute User user){
+
+      String hashPassword = passwordEncoder(user.getPassword());
+        User registeredUser = userService.registerUser(user.getEmail(), hashPassword, user.getFirstname(), user.getSurname(), user.getPhoneNumber(), user.getPharmacyName(), user.getLocation(), user.getPharmacyType());
+        return new RedirectView("/dash.html");
+//        return null;
+
+    }
+
+   /* PostMapping("/register")
     public RedirectView registerUser(@RequestParam("email") String email , @RequestParam("password") String password, @RequestParam("firstname") String firstname, @RequestParam("surname") String surname,
                                      @RequestParam("phoneNumber") String phoneNumber, @RequestParam("pharmacyName") String pharmacyName,
                                      @RequestParam("location") String location, @RequestParam("pharmacyType") String pharmacyType){
 
         String hashPassword = passwordEncoder(password);
 
-        User registeredUser = userService.registerUser(email, hashPassword, firstname, surname, phoneNumber, location, pharmacyName, pharmacyType);
+        User registeredUser = userService.registerUser(email, hashPassword, firstname, surname, phoneNumber, pharmacyName, location, pharmacyType);
         return new RedirectView("/dash.html");
 //        return null;
 
     }
-
+*/
     //  Login
     @PostMapping("/login")
     public RedirectView loginUser (@RequestParam("email") String email,

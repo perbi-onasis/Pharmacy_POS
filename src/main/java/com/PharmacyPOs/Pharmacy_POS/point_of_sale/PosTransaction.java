@@ -14,7 +14,6 @@ public class PosTransaction {
     private String id;
     private LocalDate date;
     private List<Map<String, Object>> items;
-    private double totalAmount;
 
     public PosTransaction() {
     }
@@ -23,6 +22,14 @@ public class PosTransaction {
         this.id = id;
         this.date = date;
         this.items = items;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public LocalDate getDate() {

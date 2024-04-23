@@ -8,9 +8,10 @@ import java.time.LocalDate;
 @Document(collection = "products")
 public class Product {
 
+
     @Id
     private String id;
-    private String name;
+    private String productName;
     private float costPrice;
     private float sellingPrice;
     private int quantityInStock;
@@ -23,8 +24,8 @@ public class Product {
     }
 
 
-    public Product(String name, float costPrice, float sellingPrice, int quantityInStock, LocalDate expiryDate, String categoryId) {
-        this.name = name;
+    public Product(String productName, float costPrice, float sellingPrice, int quantityInStock, LocalDate expiryDate, String categoryId) {
+        this.productName = productName;
         this.costPrice = costPrice;
         this.sellingPrice = sellingPrice;
         this.quantityInStock = quantityInStock;
@@ -40,12 +41,12 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getproductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setproductName(String productName) {
+        this.productName = productName;
     }
 
     public float getCostPrice() {

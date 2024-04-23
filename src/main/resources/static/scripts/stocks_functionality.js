@@ -13,7 +13,7 @@ function fetchAndDisplayProducts() {
                 idCounter++; //Increment the counter for each product
                 let row = "<tr data-product-id='" + product.id + "'>" +
                     "<td>" + idCounter + "</td>" +
-                    "<td>" + product.name + "</td>" +
+                    "<td>" + product.productName + "</td>" +
                     "<td>" + product.costPrice + "</td>" +
                     "<td>" + product.sellingPrice + "</td>" +
                     "<td>" + product.quantityInStock + "</td>" +
@@ -64,28 +64,194 @@ function fetchAndDisplayProducts() {
 // End Filter Search
 
 
-// Start Add Single Product Script
+
+// Add Single Product Script
+/*
+
 $("#addSingleProductForm").submit(function(e) {
     e.preventDefault();
 
     // Serialize form data
     let formData = $(this).serialize();
 
-    // Submit AJAX request to add product
-    $.post("/saveProduct", formData)
+    // Submit AJAX request to check if product name already exists
+    $.get("/checkProductName", { productName: $("#productName").val() })
         .done(function(response) {
-            console.log("Product added successfully:", response);
-            // Clear form fields
-            $('#addSingleProductForm')[0].reset();
-            // Refresh the product table after adding the product
-            fetchAndDisplayProducts();
-            // Close the modal
-            $('#addSingleProduct').modal('hide');
+            if (response.exists) {
+                // Product with the same name already exists, prompt user
+                if (confirm("A product with the same name already exists. Click OK to update quantity and expiry date, or Cancel to return to the form.")) {
+                    // User clicked OK, update quantity and expiry date
+                    formData += "&updateExisting=true";
+                } else {
+                    // User clicked Cancel, return without adding the product
+                    return;
+                }
+            }
+
+            // Submit AJAX request to add product
+            $.post("/saveProduct", formData)
+                .done(function(response) {
+                    console.log("Product added successfully:", response);
+                    // Clear form fields
+                    $('#addSingleProductForm')[0].reset();
+                    // Refresh the product table after adding the product
+                    fetchAndDisplayProducts();
+                    // Close the modal
+                    $('#addSingleProduct').modal('hide');
+                })
+                .fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error adding product:", errorThrown);
+                });
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
-            console.error("Error adding product:", errorThrown);
+            console.error("Error checking product name:", errorThrown);
         });
 });
+
+$("#addSingleProductForm").submit(function(e) {
+    e.preventDefault();
+
+    // Serialize form data
+    let formData = $(this).serialize();
+
+    // Submit AJAX request to check if product name already exists
+    $.get("/checkProductName", { productName: $("#productName").val() })
+        .done(function(response) {
+            if (response.exists) {
+                // Product with the same name already exists, prompt user
+                if (confirm("A product with the same name already exists. Click OK to update quantity and expiry date, or Cancel to return to the form.")) {
+                    // Get the product ID
+                    $.get("/getProductId", { productName: $("#productName").val() })
+                        .done(function(productId) {
+                            // Append the product ID to the URL for updating product
+                            let updateUrl = "/updateProduct/" + productId;
+
+                            // Submit AJAX request to update the existing product
+                            $.ajax({
+                                url: updateUrl, // Replace with the actual product ID
+                                type: "PUT", // Change the HTTP method to PUT
+                                data: formData,
+                                success: function(response) {
+                                    console.log("Product updated successfully:", response);
+                                    // Clear form fields
+                                    $('#addSingleProductForm')[0].reset();
+                                    // Refresh the product table after updating the product
+                                    fetchAndDisplayProducts();
+                                    // Close the modal
+                                    $('#addSingleProduct').modal('hide');
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    console.error("Error updating product:", errorThrown);
+                                }
+                            });
+
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            console.error("Error getting product ID:", errorThrown);
+                        });
+                } else {
+                    // User clicked Cancel, return without adding the product
+                    return;
+                }
+            } else {
+                // Submit AJAX request to add product
+                $.post("/saveProduct", formData)
+                    .done(function(response) {
+                        console.log("Product added successfully:", response);
+                        // Clear form fields
+                        $('#addSingleProductForm')[0].reset();
+                        // Refresh the product table after adding the product
+                        fetchAndDisplayProducts();
+                        // Close the modal
+                        $('#addSingleProduct').modal('hide');
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error adding product:", errorThrown);
+                    });
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Error checking product name:", errorThrown);
+        });
+});
+*/
+
+$("#addSingleProductForm").submit(function(e) {
+    e.preventDefault();
+
+    // Serialize form data
+    let formData = $(this).serialize();
+
+    // Submit AJAX request to check if product name already exists
+    $.get("/checkProductName", { productName: $("#productName").val() })
+        .done(function(response) {
+            if (response.exists) {
+                // Product with the same name already exists, prompt user
+                if (confirm("A product with the same name already exists. Click OK to update quantity and expiry date, or Cancel to return to the form.")) {
+                    // Get the product ID
+                    $.get("/getProductId", { productName: $("#productName").val() })
+                        .done(function(productId) {
+                            // Append the product ID to the URL for updating product
+                            let updateUrl = "/updateProduct/" + productId;
+
+                            // Convert formData object to JSON format
+                            let jsonData = {};
+                            formData.split('&').forEach(function(keyValue) {
+                                let [key, value] = keyValue.split('=');
+                                jsonData[key] = decodeURIComponent(value.replace(/\+/g, ' '));
+                            });
+
+                            // Submit AJAX request to update the existing product
+                            $.ajax({
+                                url: updateUrl, // Replace with the actual product ID
+                                type: "PUT", // Change the HTTP method to PUT
+                                data: JSON.stringify(jsonData),
+                                contentType: 'application/json',
+                                success: function(response) {
+                                    console.log("Product updated successfully:", response);
+                                    // Clear form fields
+                                    $('#addSingleProductForm')[0].reset();
+                                    // Refresh the product table after updating the product
+                                    fetchAndDisplayProducts();
+                                    // Close the modal
+                                    $('#addSingleProduct').modal('hide');
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    console.error("Error updating product:", errorThrown);
+                                }
+                            });
+
+                        })
+                        .fail(function(jqXHR, textStatus, errorThrown) {
+                            console.error("Error getting product ID:", errorThrown);
+                        });
+                } else {
+                    // User clicked Cancel, return without adding the product
+                    return;
+                }
+            } else {
+                // Submit AJAX request to add product
+                $.post("/saveProduct", formData)
+                    .done(function(response) {
+                        console.log("Product added successfully:", response);
+                        // Clear form fields
+                        $('#addSingleProductForm')[0].reset();
+                        // Refresh the product table after adding the product
+                        fetchAndDisplayProducts();
+                        // Close the modal
+                        $('#addSingleProduct').modal('hide');
+                    })
+                    .fail(function(jqXHR, textStatus, errorThrown) {
+                        console.error("Error adding product:", errorThrown);
+                    });
+            }
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Error checking product name:", errorThrown);
+        });
+});
+
+
 // End Add Single Product Script
 
 // Start Update Product Script
@@ -99,7 +265,7 @@ $(document).on('click', '.update', function(e) {
     $.get("/products/" + productId, function(product) {
 
         // Populate the modal form fields with the fetched product data
-        $("#updateProductModal #updateNameOfProduct").val(product.name);
+        $("#updateProductModal #updateNameOfProduct").val(product.productName);
         $("#updateProductModal #updateProductId").val(product.id);
         $("#updateProductModal #updateCostOfProduct").val(product.costPrice);
         $("#updateProductModal #updateSellingPriceOfProduct").val(product.sellingPrice);

@@ -15,7 +15,9 @@ import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @Controller
@@ -28,12 +30,12 @@ public class ProductController {
 
     @PostMapping("/saveProduct")
     public ResponseEntity<Product> createProduct(
-            @RequestParam String name, @RequestParam float costPrice,
+            @RequestParam String productName, @RequestParam float costPrice,
             @RequestParam float sellingPrice, @RequestParam int quantityInStock,
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate expiryDate,
             @RequestParam String categoryId)
     {
-        Product product = new Product(name, costPrice, sellingPrice, quantityInStock, expiryDate, categoryId);
+        Product product = new Product(productName, costPrice, sellingPrice, quantityInStock, expiryDate, categoryId);
         Product savedProduct = productService.save(product);
 
         return ResponseEntity.ok(savedProduct);
@@ -94,6 +96,16 @@ public class ProductController {
         return ResponseEntity.ok(product);
     }
 
+    // Get Product ID by Name
+    @GetMapping("/getProductId")
+    public ResponseEntity<String> getProductIdByName(@RequestParam String productName) {
+        String productId = productService.findIdByName(productName);
+        if (productId == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(productId);
+    }
+
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<Product>> getProductsByCategoryId(@PathVariable String categoryId) {
         List<Product> products = productService.findByCategoryId(categoryId);
@@ -115,6 +127,14 @@ public class ProductController {
         return ResponseEntity.ok(products);
     }
 
+     @GetMapping("/checkProductName")
+    public ResponseEntity<Map<String, Boolean>> checkProductName(@RequestParam String productName) {
+        boolean exists = productService.existsByName(productName);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("exists", exists);
+        return ResponseEntity.ok(response);
+    }
+
     @DeleteMapping("products/{productId}")
     public ResponseEntity<String> deleteProduct(@PathVariable("productId") String id){
         boolean deleted = productService.deleteById(id);
@@ -125,5 +145,7 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to delete product");
         }
     }
+
+
 
 }
